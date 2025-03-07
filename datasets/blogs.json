@@ -1,0 +1,146 @@
+[
+    {
+        "post_link": "https://developers.googleblog.com/en/start-building-with-the-gemini-2-0-flash-family",
+        "title": "Start building with Gemini 2.0 Flash and Flash-Lite",
+        "category": "Technologies",
+        "description": "Gemini 2.0 Flash-Lite is now generally available in the Gemini API for production use in Google AI Studio and for enterprise customers on Vertex AI",
+        "date": "2025-02-25",
+        "image_url": "https://lh3.googleusercontent.com/ppuR9mrJez2EawCQCHGzrYEoXiZJavMD77HIMV0icT4X-clg7Ss42pO-mPQrvVwBVZ8-9tEXPf91f7ARmwLOOsKtSe5-0DLLEavnhI6uK3UFMRMM=w400-h225-n-nu"
+    },
+    {
+        "post_link": "https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025",
+        "title": "Gemini 2.0 is now available to everyone",
+        "category": "Technologies",
+        "description": "We\u2019re announcing new updates to Gemini 2.0 Flash, plus introducing Gemini 2.0 Flash-Lite and Gemini 2.0 Pro Experimental.",
+        "date": "2025-02-05",
+        "image_url": "https://lh3.googleusercontent.com/jOZg_YMBxrm-cz0kTZPehtQ29D90UZ21AXq9E54u3RZ67VEoXNy2KEsmD3oPgCDCIBw39ydczc8VQHH3QlUzIjdsgSPwIFdAEHXiHhsnUIKqmhppSQ=w400-h225-n-nu"
+    },
+    {
+        "post_link": "/discover/blog/updating-the-frontier-safety-framework/",
+        "title": "Updating the Frontier Safety Framework",
+        "category": "Responsibility & Safety",
+        "description": "Our next iteration of the FSF sets out stronger security protocols on the path to AGI",
+        "date": "2025-02-04",
+        "image_url": "https://lh3.googleusercontent.com/0fu18H8X3miSAuwcVJ7Zulis_LZAL7F4bIFU7FYFA2dGx3Rm3HHlm5N202B0dtKBuS7iI5SD1QgpFPuU-O3TPzb7iG1Ns-loZzinRB3M3X3W-MAgIQ=w400-h225-n-nu"
+    },
+    {
+        "post_link": "/discover/blog/facts-grounding-a-new-benchmark-for-evaluating-the-factuality-of-large-language-models/",
+        "title": "FACTS Grounding: A new benchmark for evaluating the factuality of large language models",
+        "category": "Responsibility & Safety",
+        "description": "Our comprehensive benchmark and online leaderboard offer a much-needed measure of how accurately LLMs ground their responses in provided source material and avoid hallucinations",
+        "date": "2024-12-17",
+        "image_url": "https://lh3.googleusercontent.com/PNlhxhf4LKLRCezIt7Ap358F91-vbK5dLp56Ak1FejpCZh3YTp6jGqIDJm9c0iAtx8Y73MCTu279c1k2GZkM2qXXaqx315NSOaSiU0y0ATMK2c2Hyw=w400-h225-n-nu"
+    },
+    {
+        "post_link": "https://blog.google/technology/google-labs/video-image-generation-update-december-2024",
+        "title": "State-of-the-art video and image generation with Veo 2 and Imagen 3",
+        "category": "Technologies",
+        "description": "We\u2019re rolling out a new, state-of-the-art video model, Veo 2, and updates to Imagen 3. Plus, check out our new experiment, Whisk.",
+        "date": "2024-12-16",
+        "image_url": "https://lh3.googleusercontent.com/oQJc7KdT6VMNI34EQDKbFRL59cIYqJQpX2HFx89rzbt4mREOnrimL7-iFzJrPn-laATOzohFG-aBEpDvIqMxkv-HBycJ3ZhmitYLKwha3JkidE4uwg=w400-h225-n-nu"
+    },
+    {
+        "post_link": "https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=",
+        "title": "Introducing Gemini 2.0: our new AI model for the agentic era",
+        "category": "Technologies",
+        "description": "Today, we\u2019re announcing Gemini 2.0, our most capable multimodal AI model yet.",
+        "date": "2024-12-11",
+        "image_url": "https://lh3.googleusercontent.com/SresVCXLvYPfFosb0TQ7ux4XG0rtds1hAYOzMcayK9eeGv684ZcgcSUN95biWiMTpIHDPzuFiau-Lwsnz8qwkCQtJ-wILDf1XspScVimH6ObeBQKkg=w400-h225-n-nu"
+    },
+    {
+        "post_link": "https://deepmind.google/discover/blog/google-deepmind-at-neurips-2024/",
+        "title": "Google DeepMind at NeurIPS 2024",
+        "category": "Research",
+        "description": "Advancing adaptive AI agents, empowering 3D scene creation, and innovating LLM training for a smarter, safer future",
+        "date": "2024-12-05",
+        "image_url": "https://lh3.googleusercontent.com/cKpWE16vpsZ21VcH-_SdGF8tQEeEMp2phWFajdBq_A7aMVS2axiXQzd7V8mlHdJm-CXVKh1IaY3yeM_lAwu_zxc6SIBdWahdN6nYoaQqUbC8uU0qoY8=w400-h225-n-nu"
+    },
+    {
+        "post_link": "https://deepmind.google/discover/blog/gencast-predicts-weather-and-the-risks-of-extreme-conditions-with-sota-accuracy/",
+        "title": "GenCast predicts weather and the risks of extreme conditions with state-of-the-art accuracy",
+        "category": "Technologies",
+        "description": "New AI model advances the prediction of weather uncertainties and risks, delivering faster, more accurate forecasts up to 15 days ahead",
+        "date": "2024-12-04",
+        "image_url": "https://lh3.googleusercontent.com/4u3n6FBe0eE86yXgppDN_yj_AkiCF5FaSToa8f3Mh5bFWzIH01ewGN737emoYKcGXLxQagYFMxi9j-cAZyAzkdFndCDg2ne9E42w4YZD7HyBChaf=w400-h225-n-nu"
+    },
+    {
+        "post_link": "https://deepmind.google/discover/blog/genie-2-a-large-scale-foundation-world-model/",
+        "title": "Genie 2: A large-scale foundation world model",
+        "category": "Research",
+        "description": "Generating unlimited diverse training environments for future general agents",
+        "date": "2024-12-04",
+        "image_url": "https://lh3.googleusercontent.com/wvcJdqh_wddVc-WiMGgcqe7nWp7Ybu0wd-PBDxC_VUQkfxI7HPfQz3fi_HyYTOoRM_XV3Bofp9l1wBZ1CJPZPG6yZMdZxqH8X7_Lb9nhVAquAul1=w400-h225-n-nu"
+    },
+    {
+        "post_link": "https://blog.google/technology/google-deepmind/alphaqubit-quantum-error-correction/",
+        "title": "AlphaQubit tackles one of quantum computing\u2019s biggest challenges",
+        "category": "Research",
+        "description": "Our new AI system accurately identifies errors inside quantum computers, helping to make this new technology more reliable.",
+        "date": "2024-11-20",
+        "image_url": "https://lh3.googleusercontent.com/5E3cNGtS0t4rKlZ1BYBXU93xYwONyYQqIpmY-askDQ9jpTPVb-JH20Gk3wxcMdokGY2ygzjj_crFIy-MYFY-VnekgQVzbSs0Y64AwejEChybPTie8A=w400-h225-n-nu"
+    },
+    {
+        "post_link": "https://blog.google/technology/ai/ai-science-forum-2024/",
+        "title": "The AI for Science Forum: A new era of discovery",
+        "category": "Company",
+        "description": "The AI Science Forum highlights AI's present and potential role in revolutionizing scientific discovery and solving global challenges, emphasizing collaboration between the scientific community,...",
+        "date": "2024-11-18",
+        "image_url": "https://lh3.googleusercontent.com/013uzey1mkIgSCsLZ_PieJORMUI5F6yviXI7baiAmkEf8FF1-TC8TMVNY7GY67dejQ8sKtPDJTEbCb_KSaSgdknavAHiqRnd3V1i9fkE4yzBS1R-IA=w400-h225-n-nu"
+    },
+    {
+        "post_link": "/discover/blog/pushing-the-frontiers-of-audio-generation/",
+        "title": "Pushing the frontiers of audio generation",
+        "category": "Technologies",
+        "description": "Our pioneering speech generation technologies are helping people around the world interact with more natural, conversational and intuitive digital assistants and AI tools.",
+        "date": "2024-10-30",
+        "image_url": "https://lh3.googleusercontent.com/DRHQSDQtYAEPTDVRAH3gkibfEPdd3JpphY4SLLqk5chpiqzR5nLmAL7GkXkTRPXwoSVLSfhj3FQoLjgELpAflJ3CDEU-XtbTl7_MelbnghTkzC3n=w400-h225-n-nu"
+    },
+    {
+        "title": "Massive Foundation Model for Biomolecular Sciences Now Available via NVIDIA BioNeMo",
+        "post_link": "https://blogs.nvidia.com/blog/evo-2-biomolecular-ai/",
+        "image_url": "https://blogs.nvidia.com/wp-content/uploads/2025/02/hc-corp-blog-evo2-blueprint-25-1280x680-1-960x510.jpg",
+        "description": "Scientists everywhere can now access Evo 2, a powerful new foundation model that understands the genetic code for all domains of life. Unveiled today as the largest publicly available AI\u2026    \t\tRead Article"
+    },
+    {
+        "title": "What Are Foundation Models?",
+        "post_link": "https://blogs.nvidia.com/blog/what-are-foundation-models/",
+        "image_url": "https://blogs.nvidia.com/wp-content/uploads/2023/03/bridge-pixabay-960x513.jpg",
+        "description": "Editor\u2019s note: This article, originally published on March 13, 2023, has been updated. The mics were live and tape was rolling in the studio where the Miles Davis Quintet was\u2026    \t\tRead Article"
+    },
+    {
+        "title": "AI-Designed Proteins Take on Deadly Snake Venom",
+        "post_link": "https://blogs.nvidia.com/blog/ai-designed-proteins-snake-venom/",
+        "image_url": "https://blogs.nvidia.com/wp-content/uploads/2025/02/AdobeStock_542101600-960x721.jpeg",
+        "description": "AI-driven medicine could deliver life-saving snakebite treatments to the world\u2019s most vulnerable\u2026.    \t\tRead Article"
+    },
+    {
+        "title": "What Is Retrieval-Augmented Generation, aka RAG?",
+        "post_link": "https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation/",
+        "image_url": "https://blogs.nvidia.com/wp-content/uploads/2023/11/Retrieval-Augmented-Generation-RAG-KV-1-960x513.jpg",
+        "description": "Editor\u2019s note: This article, originally published on Nov. 15, 2023, has been updated. To understand the latest advancements in generative AI, imagine a courtroom. Judges hear and decide cases based\u2026    \t\tRead Article"
+    },
+    {
+        "title": "AI Maps Titan\u2019s Methane Clouds in Record Time",
+        "post_link": "https://blogs.nvidia.com/blog/ai-maps-titan-clouds/",
+        "image_url": "https://blogs.nvidia.com/wp-content/uploads/2025/01/nasa-titans-1-960x543.jpg",
+        "description": "NVIDIA GPUs powered deep learning to decode years of Cassini data in seconds\u2014helping researchers pioneer a smarter way to explore alien worlds\u2026.    \t\tRead Article"
+    },
+    {
+        "title": "Healthcare Leaders, NVIDIA CEO Share AI Innovation Across the Industry",
+        "post_link": "https://blogs.nvidia.com/blog/jp-morgan-healthcare-2025/",
+        "image_url": "https://blogs.nvidia.com/wp-content/uploads/2025/01/IMG_5582-960x510.jpg",
+        "description": "AI is making inroads across the entire healthcare industry \u2014 from genomic research to drug discovery, clinical trial workflows and patient care. In a fireside chat Monday during the annual\u2026    \t\tRead Article"
+    },
+    {
+        "title": "Have You Heard? 5 AI Podcast Episodes Listeners Loved in 2024",
+        "post_link": "https://blogs.nvidia.com/blog/ai-podcast-2024-highlights/",
+        "image_url": "https://blogs.nvidia.com/wp-content/uploads/2021/08/ai-podcast-2600x1472_-1-960x544.jpg",
+        "description": "NVIDIA\u2019s AI Podcast gives listeners the inside scoop on the ways AI is transforming nearly every industry.\u00a0 Since the show\u2019s debut in 2016, it\u2019s garnered more than 6 million listens\u2026    \t\tRead Article"
+    },
+    {
+        "title": "AI Pioneers Win Nobel Prizes for Physics and Chemistry",
+        "post_link": "https://blogs.nvidia.com/blog/ai-nobel-physics-chemistry/",
+        "image_url": "https://blogs.nvidia.com/wp-content/uploads/2024/12/nobel-cropping-960x585.png",
+        "description": "Artificial intelligence, once the realm of science fiction, claimed its place at the pinnacle of scientific achievement Monday in Sweden. In a historic ceremony at Stockholm\u2019s iconic Konserthuset, John Hopfield\u2026    \t\tRead Article"
+    }
+]
