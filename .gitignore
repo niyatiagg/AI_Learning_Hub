@@ -1,3 +1,6 @@
 __pycache__/*
 .idea/*
+.nicegui/
 .DS_Store
+db.sqlite3-shm 
+db.sqlite3-wal
