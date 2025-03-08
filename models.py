@@ -41,3 +41,7 @@ class Unapproved(models.Model):
     url = fields.CharField(max_length=255)
     date = fields.DateField(null=True)
     authors = fields.CharField(max_length=512, null=True)
+
+class Bookmark(models.Model):
+    userid = fields.IntField()
+    resourceid = fields.IntField()
