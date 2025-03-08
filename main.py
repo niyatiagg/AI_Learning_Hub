@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import asyncio
 import httpx
-
+from langchain_openai import ChatOpenAI
+from log_callback_handler import NiceGuiLogElementCallbackHandler
 from auth import AuthMiddleware, login
 from nicegui import app, ui
 from tortoise import Tortoise
@@ -38,6 +39,13 @@ def main_page() -> None:
     ui.link('Trending Repos', trending_repos)
     ui.link('Research Papers', research_papers)
     ui.link('Blogs', blogs)
+    with ui.dialog() as chat_dialog:
+        with ui.card():
+            chat_output = ui.column()
+            user_input = ui.input(placeholder="Ask me something about AI...")
+            ui.button("Send", on_click=lambda: asyncio.create_task(send_message(user_input, chat_output)))
+
+    ui.button("Chat with AI", on_click=chat_dialog.open).style('position: fixed; bottom: 20px; right: 20px; z-index: 1000;')
 
 @ui.page('/trending_repos')
 async def trending_repos() -> None:
@@ -65,5 +73,46 @@ async def trending_repos() -> None:
                             ui.icon('star')
                             ui.item_label(repo['watchers_count']).props('caption')
     running_query = None
+
+
+OPENAI_API_KEY = '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'  # TODO: set your OpenAI API key here
+
+llm = ChatOpenAI(model_name='gpt-3.5-turbo', streaming=True, openai_api_key=OPENAI_API_KEY)
+log = ui.log()  # Create a log element in the UI
+
+
+async def send_message(query, output_container):
+    if not query.value.strip():
+        return
+
+    try:
+        question = query.value  # Use the query directly
+        query.value = ''
+
+        with output_container:
+            ui.chat_message(text=question, name='You', sent=True)
+            response_message = ui.chat_message(name='Chat Assistant', sent=False)
+            spinner = ui.spinner(type='dots')
+
+        response = ''
+        async for chunk in llm.astream(question, config={'callbacks': [NiceGuiLogElementCallbackHandler(log)]}):
+            response += chunk.content
+            response_message.clear()
+            with response_message:
+                ui.label(f"{response}").style('background-color: blue; color: white; padding: 10px; border-radius: 5px;')
+        output_container.remove(spinner)
+
+    except httpx.HTTPStatusError as e:
+        response = f"An error occurred: HTTP error status {e.response.status_code}"
+        response_message.clear()
+        with response_message:
+            ui.label(f"{response}").style('background-color: red; color: white; padding: 10px; border-radius: 5px;')
+
+    except Exception as e:
+        response = f"An error occurred: {str(e)}"
+        response_message.clear()
+        with response_message:
+            ui.label(f"{response}").style('background-color: red; color: white; padding: 10px; border-radius: 5px;')
+
 
 ui.run(storage_secret='THIS_NEEDS_TO_BE_CHANGED')
