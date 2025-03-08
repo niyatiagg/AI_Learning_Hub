@@ -3,7 +3,7 @@ import asyncio
 import json, models
 
 from tortoise import Tortoise
-from models import ResourceType
+from models import ResourceType, RoleType
 
 
 async def init_db() -> None:
@@ -77,9 +77,25 @@ async def load_research_papers() -> None:
             authors=item['authors']
         )
 
+#TODO: Enable form to submit for admin approval
+async def load_unapproved() -> None:
+    with open('datasets/blogs.json', 'r') as file:
+        data = json.load(file)
+    for item in data:
+        await models.Unapproved.create(
+            title=item['title'],
+            description=item['description'],
+            image=item['image_url'],
+            type=ResourceType.BLOG,
+            url=item['post_link'],
+            date=item.get('date', None),
+            authors=item.get('authors', None)
+        )
+
 async def load_users() -> None:
-    await models.User.create(username='user1', password='pass1')
-    await models.User.create(username='user2', password='pass2')
+    await models.User.create(username='admin', password='admin', role=RoleType.ADMIN)
+    await models.User.create(username='user1', password='pass1', role=RoleType.USER)
+    await models.User.create(username='user2', password='pass2', role=RoleType.USER)
 
 async def main():
     await init_db()
@@ -87,6 +103,7 @@ async def main():
     await load_courses()
     await load_repos()
     await load_research_papers()
+    await load_unapproved()
     await load_users()
     await close_db()
 

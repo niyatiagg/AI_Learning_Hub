@@ -13,7 +13,7 @@ def login() -> Optional[RedirectResponse]:
     async def try_login() -> None:  # local function to avoid passing username and password as arguments
         users: List[models.User] = await models.User.filter(username=username.value)
         if len(users) == 1 and users[0].password == password.value:
-            app.storage.user.update({'username': username.value, 'userid': users[0].id, 'authenticated': True})
+            app.storage.user.update({'username': username.value, 'userid': users[0].id, 'role': users[0].role.value, 'authenticated': True})
             ui.navigate.to(app.storage.user.get('referrer_path', '/'))  # go back to where the user wanted to go
         else:
             ui.notify('Wrong username or password', color='negative')

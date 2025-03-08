@@ -1,6 +1,10 @@
 from enum import Enum
 from tortoise import fields, models
 
+class RoleType(Enum):
+    ADMIN = 'admin'
+    USER = 'user'
+
 class ResourceType(Enum):
     BLOG = 'blog'
     COURSE = 'course'
@@ -12,6 +16,7 @@ class User(models.Model):
     id = fields.IntField(pk=True)
     #TODO: enable name field and others name = fields.CharField(max_length=255)
     username = fields.CharField(max_length=255)
+    role = fields.CharEnumField(RoleType)
     #TODO: hash the password in storage
     password = fields.CharField(max_length=255)
 
@@ -27,3 +32,12 @@ class Resource(models.Model):
     authors = fields.CharField(max_length=512, null=True)
     language = fields.CharField(max_length=64, null=True)
     stars = fields.IntField(null=True)
+
+class Unapproved(models.Model):
+    title = fields.CharField(max_length=255)
+    description = fields.CharField(max_length=2048)
+    type = fields.CharEnumField(ResourceType)
+    image = fields.CharField(max_length=255, null=True)
+    url = fields.CharField(max_length=255)
+    date = fields.DateField(null=True)
+    authors = fields.CharField(max_length=512, null=True)

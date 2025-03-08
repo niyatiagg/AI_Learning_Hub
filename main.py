@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 import asyncio
 import httpx
-from langchain_openai import ChatOpenAI
 
+from admin import admin_page
+from langchain_openai import ChatOpenAI
 from log_callback_handler import NiceGuiLogElementCallbackHandler
 from auth import AuthMiddleware, login
 from nicegui import app, ui
 from tortoise import Tortoise
 from typing import Optional
+
+from models import RoleType
 from utils import blogs, courses, github_repos, research_papers, search
 
 api = httpx.AsyncClient()
@@ -31,8 +34,8 @@ def main_page() -> None:
         ui.navigate.to('/login')
 
     with ui.header().classes('items-right'):
-        ui.label(f'{app.storage.user["username"]}').classes('text-2xl')
-        ui.button(on_click=logout, icon='logout')
+        ui.label(f'{app.storage.user["username"]}').classes('text-2xl').style('position: fixed; top: 20px; right: 100px; z-index: 1000;')
+        ui.button(on_click=logout, icon='logout').style('position: fixed; right: 20px; right: 20px; z-index: 1000;')
         ui.input(label="search query", placeholder="what you looking for?").on('keydown.enter', search)
 
     ui.link('Courses', courses)
@@ -41,6 +44,10 @@ def main_page() -> None:
     ui.link('Trending Repos', trending_repos)
     ui.link('Research Papers', research_papers)
     ui.link('Blogs', blogs)
+    print(app.storage.user['role'])
+    if app.storage.user['role'] == RoleType.ADMIN.value:
+        ui.link('Admin', admin_page)
+
     with ui.dialog() as chat_dialog:
         with ui.card():
             chat_output = ui.column()

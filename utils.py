@@ -1,10 +1,9 @@
-from nicegui import ui
-from typing import List
-
-from nicegui.events import ValueChangeEventArguments
-
 import models
+
 from models import ResourceType
+from nicegui import ui
+from nicegui.events import ValueChangeEventArguments
+from typing import List
 
 @ui.page('/courses')
 async def courses() -> None:
