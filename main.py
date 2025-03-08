@@ -11,7 +11,7 @@ from tortoise import Tortoise
 from typing import Optional
 
 from models import RoleType
-from utils import blogs, courses, github_repos, research_papers, search
+from utils import bookmarked, blogs, courses, github_repos, research_papers, search
 
 api = httpx.AsyncClient()
 running_query: Optional[asyncio.Task] = None
@@ -44,6 +44,7 @@ def main_page() -> None:
     ui.link('Trending Repos', trending_repos)
     ui.link('Research Papers', research_papers)
     ui.link('Blogs', blogs)
+    ui.link('Bookmarked', bookmarked)
     print(app.storage.user['role'])
     if app.storage.user['role'] == RoleType.ADMIN.value:
         ui.link('Admin', admin_page)

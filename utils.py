@@ -21,8 +21,12 @@ async def blogs() -> None:
 async def github_repos() -> None:
     await load_resource_page(ResourceType.REPOSITORY)
 
+@ui.page('/bookmarked')
+async def bookmarked() -> None:
+    await load_resource_page()
+
 @ui.refreshable
-async def load_resource_page(resource_type) -> None:
+async def load_resource_page(resource_type=None) -> None:
     async def bookmark(rid) -> None:
         uid = app.storage.user.get('userid', None)
         if uid is not None:
@@ -37,7 +41,10 @@ async def load_resource_page(resource_type) -> None:
 
     bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
     bookmark_ids = [b.resourceid for b in bookmarks]
-    resources: List[models.Resource] = await models.Resource.filter(type=resource_type)
+    if resource_type is None:
+        resources: List[models.Resource] = await models.Resource.filter(id__in=bookmark_ids)
+    else:
+        resources: List[models.Resource] = await models.Resource.filter(type=resource_type)
     with ui.list():
         for resource in resources:
             with ui.link(target=resource.url):
