@@ -2,12 +2,13 @@
 import asyncio
 import httpx
 from langchain_openai import ChatOpenAI
+
 from log_callback_handler import NiceGuiLogElementCallbackHandler
 from auth import AuthMiddleware, login
 from nicegui import app, ui
 from tortoise import Tortoise
 from typing import Optional
-from utils import blogs, courses, github_repos, research_papers
+from utils import blogs, courses, github_repos, research_papers, search
 
 api = httpx.AsyncClient()
 running_query: Optional[asyncio.Task] = None
@@ -32,6 +33,7 @@ def main_page() -> None:
     with ui.header().classes('items-right'):
         ui.label(f'{app.storage.user["username"]}').classes('text-2xl')
         ui.button(on_click=logout, icon='logout')
+        ui.input(label="search query", placeholder="what you looking for?").on('keydown.enter', search)
 
     ui.link('Courses', courses)
     ui.link('Handbooks', github_repos)
