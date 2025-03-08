@@ -10,8 +10,10 @@ class ResourceType(Enum):
 
 class User(models.Model):
     id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=255)
-    age = fields.IntField()
+    #TODO: enable name field and others name = fields.CharField(max_length=255)
+    username = fields.CharField(max_length=255)
+    #TODO: hash the password in storage
+    password = fields.CharField(max_length=255)
 
 class Resource(models.Model):
     id = fields.IntField(pk=True)

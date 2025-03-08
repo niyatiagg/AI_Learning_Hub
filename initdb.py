@@ -2,9 +2,7 @@
 import asyncio
 import json, models
 
-from docutils.nodes import authors
 from tortoise import Tortoise
-
 from models import ResourceType
 
 
@@ -79,12 +77,17 @@ async def load_research_papers() -> None:
             authors=item['authors']
         )
 
+async def load_users() -> None:
+    await models.User.create(username='user1', password='pass1')
+    await models.User.create(username='user2', password='pass2')
+
 async def main():
     await init_db()
     await load_blogs()
     await load_courses()
     await load_repos()
     await load_research_papers()
+    await load_users()
     await close_db()
 
 if __name__ == "__main__":

@@ -2,19 +2,18 @@ from fastapi import Request
 from fastapi.responses import RedirectResponse
 from nicegui import app, ui
 from starlette.middleware.base import BaseHTTPMiddleware
-from typing import Optional
+from typing import Optional, List
 
-#TODO: Plug data for user
-# in reality users passwords would obviously need to be hashed
-passwords = {'user1': 'pass1', 'user2': 'pass2'}
+import models
 
 unrestricted_page_routes = {'/login'}
 
 @ui.page('/login')
 def login() -> Optional[RedirectResponse]:
-    def try_login() -> None:  # local function to avoid passing username and password as arguments
-        if passwords.get(username.value) == password.value:
-            app.storage.user.update({'username': username.value, 'authenticated': True})
+    async def try_login() -> None:  # local function to avoid passing username and password as arguments
+        users: List[models.User] = await models.User.filter(username=username.value)
+        if len(users) == 1 and users[0].password == password.value:
+            app.storage.user.update({'username': username.value, 'userid': users[0].id, 'authenticated': True})
             ui.navigate.to(app.storage.user.get('referrer_path', '/'))  # go back to where the user wanted to go
         else:
             ui.notify('Wrong username or password', color='negative')

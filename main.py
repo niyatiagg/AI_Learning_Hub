@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
+import asyncio
+import httpx
 
 from auth import AuthMiddleware, login
 from nicegui import app, ui
 from tortoise import Tortoise
 from typing import Optional
 from utils import blogs, courses, github_repos, research_papers
-import asyncio
-import httpx
 
 api = httpx.AsyncClient()
 running_query: Optional[asyncio.Task] = None
@@ -51,7 +51,7 @@ async def trending_repos() -> None:
     response = await running_query
     if response.text == '':
         return
-    with results:  # enter the context of the the results row
+    with results:  # enter the context of the results row
         with ui.list():
             for repo in response.json()['items'] or []:  # iterate over the response data of the api
                 with ui.link(target=repo['html_url']):
