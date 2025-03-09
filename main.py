@@ -33,9 +33,10 @@ def build_header():
         with ui.row().classes('items-center gap-x-4'):
             ui.label('AI Learning Hub').classes('text-3xl font-semi')
         with ui.row().classes('items-center gap-x-6'):
+            ui.icon('search').style('position: absolute; padding-left: 10px; color: grey;')
             ui.input(label="search query", placeholder="Search bar").on('keydown.enter', search).props('clearable outlined dense outline').style('background-color: white;')
             ui.label(f'{app.storage.user["username"]}').classes('text-xl')
-            ui.chip(on_click=lambda: logout(), icon='logout').props('outline').classes('shadow-lg text-white')
+            ui.chip(on_click=lambda: logout(), icon='logout', color='white').props('outline').classes('shadow-lg text-white').style('width: 10%;')
 
     def logout() -> None:
         app.storage.user.clear() #should we just clear session?
@@ -53,16 +54,21 @@ def main_page() -> None:
                 send_button = ui.button('Send', on_click=lambda: asyncio.create_task(send_message(user_input, chat_output))).classes('send-button')
     # ui.button('Chat', on_click=chat_dialog.open).classes('chat-button')
 
-    with ui.splitter(value=30).classes('w-full h-full') as splitter:
+    with ui.splitter(value=15).classes('w-full h-full') as splitter:
         with splitter.before:
             with ui.tabs().props('vertical').classes('w-full') as tabs:
-                dashboard_tab = ui.tab('Personalized Dashboard', icon='mail')
+                dashboard_tab = ui.tab('My Dashboard', icon='mail')
                 courses_tab = ui.tab('Courses', icon='school')
                 handbooks_tab = ui.tab('Handbooks', icon='library_books')
                 github_repos_tab = ui.tab('GitHub Repos', icon='code')
                 trending_repos_tab = ui.tab('Trending Repos', icon='trending_up')
                 research_papers_tab = ui.tab('Research Papers', icon='article')
                 blogs_tab = ui.tab('Blogs', icon='rss_feed')
+                if app.storage.user['role'] == RoleType.ADMIN.value:
+                    admin_tab = ui.tab('Admin Page', icon='admin_panel_settings')
+                # else:
+                #     resource_tab = ui.tab('Submit Resource', icon='rss_feed')
+                    # ui.link('Submit Resource', submit_resource)
         with splitter.after:
             with ui.tab_panels(tabs, value=dashboard_tab) \
                     .props('vertical').classes('w-full h-full'):
@@ -80,14 +86,25 @@ def main_page() -> None:
                     asyncio.create_task(research_papers(research_panel))
                 with ui.tab_panel(blogs_tab) as blogs_panel:
                     asyncio.create_task(blogs(blogs_panel))
+                try:
+                    with ui.tab_panel(admin_tab) as admin_panel:
+                        asyncio.create_task(admin_page(admin_panel))
+                except NameError:
+                    # Not an admin user
+                    print("Not an admin user")
+                # try:
+                #     with ui.tab_panel(resource_tab) as resource_panel:
+                #         asyncio.create_task(submit_resource_util(research_panel))
+                # except NameError:
+                #     # Not a normal user
+                #     print("Not a normal user")
 
 
-    if app.storage.user['role'] == RoleType.ADMIN.value:
-        ui.link('Admin', admin_page)
-    else:
+    if app.storage.user['role'] == RoleType.USER.value:
         ui.link('Submit Resource', submit_resource)
 
-    ui.button('Chat', on_click=chat_dialog.open).classes('chat-button')
+    with ui.page_sticky(x_offset=18, y_offset=18):
+        ui.button('Chat', icon='smart_toy', on_click=chat_dialog.open).classes('chat-button')
 
 # @ui.page('/trending_repos')
 async def trending_repos(container) -> None:
@@ -106,16 +123,17 @@ async def trending_repos(container) -> None:
             with results:  # enter the context of the results row
                 with ui.list():
                     for repo in response.json()['items'] or []:  # iterate over the response data of the api
-                        with ui.link(target=repo['html_url']):
-                            with ui.item():
-                                with ui.item_section().props('avatar'):
-                                    ui.image(repo['owner']['avatar_url'])
-                                with ui.item_section():
-                                    ui.item_label(repo['full_name'])
-                                    ui.item_label(repo['description']).props('caption')
-                                    ui.item_label(repo['language']).props('caption')
-                                    ui.icon('star')
-                                    ui.item_label(repo['watchers_count']).props('caption')
+                        with ui.item():
+                            with ui.item_section().props('avatar'):
+                                ui.image(repo['owner']['avatar_url'])
+                            with ui.item_section():
+                                with ui.link(target=repo['html_url']):
+                                    ui.item_label(repo['full_name']).classes('text-md')
+                                ui.item_label(repo['description']).props('caption').classes('text-md').style('padding-top: 5px; padding-bottom: 5px;')
+                                with ui.row().classes('items-center'):
+                                    ui.item_label(repo['language']).props('caption').classes('text-md')
+                                    ui.icon('star').style('margin-right: -12px;').classes('text-md')
+                                    ui.item_label(repo['watchers_count']).props('caption').classes('text-md')
             running_query = None
 
 

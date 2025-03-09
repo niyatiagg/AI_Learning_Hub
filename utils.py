@@ -2,7 +2,7 @@ import models
 
 from models import ResourceType
 from nicegui.events import ValueChangeEventArguments
-from nicegui import app, ui
+from nicegui import app, events, ui
 from typing import List
 
 # @ui.page('/courses')

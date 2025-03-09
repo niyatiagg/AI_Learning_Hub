@@ -5,9 +5,11 @@ import models
 from models import ResourceType
 
 
-@ui.page('/admin')
-async def admin_page() -> None:
-    await admin_table()
+# @ui.page('/admin')
+async def admin_page(container) -> None:
+    with container:
+        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
+            await admin_table()
 
 @ui.refreshable
 async def admin_table() -> None:
@@ -23,17 +25,18 @@ async def admin_table() -> None:
     unapproved: List[models.Unapproved] = await models.Unapproved.all()
     with ui.list():
         for res in unapproved:  # iterate over the response data of the api
-            with ui.link(target=res.url):
-                with ui.item():
-                    with ui.item_section().props('avatar'):
-                        ui.image(res.image)
-                    with ui.item_section():
-                        ui.item_label(res.title)
-                        ui.item_label(res.description).props('caption')
-                        ui.item_label(res.date).props('caption')
-                        ui.item_label(res.authors).props('caption')
-            ui.button(text='Approve', icon='check', on_click=lambda r=res: approve(r))
-            ui.button(text='Reject', icon='cross', on_click=lambda r=res: decline(r))
+            # with ui.row().classes('items-center'):
+            with ui.item():
+                with ui.item_section().props('avatar'):
+                    ui.image(res.image)
+                with ui.item_section():
+                    with ui.link(target=res.url):
+                        ui.item_label(res.title).classes('text-lg')
+                    ui.item_label(res.description).props('caption').classes('text-lg')
+                    ui.item_label(res.date).props('caption')
+                    ui.item_label(res.authors).props('caption')
+                ui.button(text='Approve', icon='thumb_up_alt', on_click=lambda r=res: approve(r)).props("color=green").style('margin-right: 10px;').classes('h-4 w-25')
+                ui.button(text='Reject', icon='thumb_down_alt', on_click=lambda r=res: decline(r)).props("color=red").classes('h-4 w-25')
 
 @ui.page('/submit_resource')
 async def submit_resource() -> None:
