@@ -76,10 +76,10 @@ async def load_resource_page(resources) -> None:
 
                     #TODO: show category, date, authors whereever available
                     if res.id not in bookmark_ids:
-                        ui.chip('Bookmark', selectable=True, icon='bookmark',
-                                on_click=lambda rid=res.id: bookmark(rid)).classes('mt-2')
+                        ui.chip('Bookmark', selectable=True, icon='bookmark', text_color="white", 
+                                on_click=lambda rid=res.id: bookmark(rid)).classes('mt-2').props("dark")
                     else:
-                        ui.chip('Unbookmark', selectable=True, icon='bookmark',
+                        ui.chip('Unbookmark', selectable=True, icon='bookmark', text_color="white", color='green',
                                 on_click=lambda rid=res.id: unbookmark(rid)).classes('mt-2')
 
 @ui.page('/search')

@@ -61,6 +61,7 @@ async def load_courses() -> None:
                 date = datetime.strptime(item['date'], "%b %d, %Y") if 'date' in item else None,
                 language = item.get('language', None),
                 authors = item.get('author', None),
+                image=item['image_url'],
                 rating = item.get('rating', None),
                 reviews = item.get('reviews', None),
                 duration = item.get('duration', None)

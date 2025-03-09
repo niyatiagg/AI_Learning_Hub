@@ -31,11 +31,11 @@ def build_header():
     """Builds the top navigation bar and user/logout section."""
     with ui.header().classes('flex items-center justify-between text-white shadow-md p-4'):
         with ui.row().classes('items-center gap-x-4'):
-            ui.label('AI Learning Hub').classes('text-3xl font-semi')
+            ui.label('AI Learning Hub').classes('text-4xl font-semi')
         with ui.row().classes('items-center gap-x-6'):
-            ui.icon('search').style('position: absolute; padding-left: 10px; color: grey;')
-            ui.input(label="search query", placeholder="Search bar").on('keydown.enter', search).props('clearable outlined dense outline').style('background-color: white;')
-            ui.label(f'{app.storage.user["username"]}').classes('text-xl')
+            ui.icon('search').classes('text-xl').style('position: absolute; padding-left: 180px; color: grey;')
+            ui.input(label="search query", placeholder="Search bar").on('keydown.enter', search).props('clearable outlined dense outline').style('background-color: white; margin-left: 20px;')
+            ui.label(f'{app.storage.user["username"]}').classes('text-2xl')
             ui.chip(on_click=lambda: logout(), icon='logout', color='white').props('outline').classes('shadow-lg text-white').style('width: 10%;')
 
     def logout() -> None:
@@ -55,12 +55,13 @@ def main_page() -> None:
     # ui.button('Chat', on_click=chat_dialog.open).classes('chat-button')
 
     with ui.splitter(value=15).classes('w-full h-full') as splitter:
+        ui.add_head_html('<link href="https://unpkg.com/eva-icons@1.1.3/style/eva-icons.css" rel="stylesheet" />')
         with splitter.before:
             with ui.tabs().props('vertical').classes('w-full') as tabs:
                 dashboard_tab = ui.tab('My Dashboard', icon='mail')
                 courses_tab = ui.tab('Courses', icon='school')
                 handbooks_tab = ui.tab('Handbooks', icon='library_books')
-                github_repos_tab = ui.tab('GitHub Repos', icon='code')
+                github_repos_tab = ui.tab('GitHub Repos', icon='eva-github').classes('text-2xl')
                 trending_repos_tab = ui.tab('Trending Repos', icon='trending_up')
                 research_papers_tab = ui.tab('Research Papers', icon='article')
                 blogs_tab = ui.tab('Blogs', icon='rss_feed')
@@ -128,8 +129,8 @@ async def trending_repos(container) -> None:
                                 ui.image(repo['owner']['avatar_url'])
                             with ui.item_section():
                                 with ui.link(target=repo['html_url']):
-                                    ui.item_label(repo['full_name']).classes('text-md')
-                                ui.item_label(repo['description']).props('caption').classes('text-md').style('padding-top: 5px; padding-bottom: 5px;')
+                                    ui.item_label(repo['full_name']).classes('text-lg')
+                                ui.item_label(repo['description']).props('caption').classes('text-lg').style('padding-top: 5px; padding-bottom: 5px;')
                                 with ui.row().classes('items-center'):
                                     ui.item_label(repo['language']).props('caption').classes('text-md')
                                     ui.icon('star').style('margin-right: -12px;').classes('text-md')
