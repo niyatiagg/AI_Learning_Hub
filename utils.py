@@ -5,26 +5,38 @@ from nicegui.events import ValueChangeEventArguments
 from nicegui import app, ui
 from typing import List
 
-@ui.page('/courses')
-async def courses() -> None:
-    await load_resource_page(ResourceType.COURSE)
+# @ui.page('/courses')
+async def courses(container) -> None:
+    with container:
+        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
+            await load_resource_page(ResourceType.COURSE)
 
-@ui.page('/research_papers')
-async def research_papers() -> None:
-    await load_resource_page(ResourceType.RESEARCH_PAPER)
+# @ui.page('/research_papers')
+async def research_papers(container) -> None:
+    with container:
+        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
+            await load_resource_page(ResourceType.RESEARCH_PAPER)
 
-@ui.page('/blogs')
-async def blogs() -> None:
-    await load_resource_page(ResourceType.BLOG)
+# @ui.page('/blogs')
+async def blogs(container) -> None:
+    with container:
+        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
+            await load_resource_page(ResourceType.BLOG)
 
-@ui.page('/github_repos')
-async def github_repos() -> None:
-    await load_resource_page(ResourceType.REPOSITORY)
+# @ui.page('/github_repos')
+async def github_repos(container) -> None:
+    with container:
+        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
+            await load_resource_page(ResourceType.REPOSITORY)
 
-@ui.page('/bookmarked')
-async def bookmarked() -> None:
-    await load_resource_page()
+# @ui.page('/bookmarked')
+async def bookmarked(container) -> None:
+    with container:
+        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
+            await load_resource_page()
 
+
+# @ui.refreshable
 async def load_resource_page(resource_type=None) -> None:
     async def bookmark(rid) -> None:
         uid = app.storage.user.get('userid', None)
