@@ -2,39 +2,31 @@
     {
         "title": "Introduction to Artificial Intelligence (AI)",
         "link": "https://www.coursera.org/learn/introduction-to-ai",
-        "skills": "Skills not found",
+        "description": "Skills you'll gain: Artificial Intelligence, Generative AI, Data Ethics, OpenAI, Artificial Intelligence and Machine Learning (AI/ML), Deep Learning, Artificial Neural Networks, ChatGPT, Governance, Machine Learning, Business Transformation, Ethical Standards And Conduct, Computer Vision, Emerging Technologies, Natural Language Processing",
         "rating": "4.7",
         "reviews": "17K reviews",
         "level_time": "Beginner \u00b7 Course \u00b7 1 - 4 Weeks"
     },
     {
-        "title": "AI For Everyone",
-        "link": "https://www.coursera.org/learn/ai-for-everyone",
-        "skills": "Skills not found",
-        "rating": "4.8",
-        "reviews": "46K reviews",
-        "level_time": "Beginner \u00b7 Course \u00b7 1 - 4 Weeks"
-    },
-    {
-        "title": "Generative AI for Software Development",
-        "link": "https://www.coursera.org/professional-certificates/generative-ai-for-software-development",
-        "skills": "Skills not found",
-        "rating": "4.6",
-        "reviews": "449 reviews",
-        "level_time": "Beginner \u00b7 Professional Certificate \u00b7 1 - 3 Months"
+        "title": "Machine Learning",
+        "link": "https://www.coursera.org/specializations/machine-learning-introduction",
+        "description": "Skills you'll gain: Unsupervised Learning, Supervised Learning, Classification And Regression Tree (CART), Artificial Intelligence and Machine Learning (AI/ML), Machine Learning Algorithms, Machine Learning, Jupyter, Data Ethics, Decision Tree Learning, Tensorflow, Scikit Learn (Machine Learning Library), NumPy, Predictive Modeling, Deep Learning, Artificial Intelligence, Reinforcement Learning, Random Forest Algorithm, Feature Engineering, Python Programming, Artificial Neural Networks",
+        "rating": "4.9",
+        "reviews": "32K reviews",
+        "level_time": "Beginner \u00b7 Specialization \u00b7 1 - 3 Months"
     },
     {
         "title": "Adobe Marketing Specialist",
         "link": "https://www.coursera.org/professional-certificates/adobe-marketing-specialist",
-        "skills": "Skills not found",
-        "rating": "4.7",
-        "reviews": "347 reviews",
+        "description": "Skills you'll gain: Content Marketing, Promotional Strategies, Social Media Content, Target Audience, Marketing Channel, Digital Marketing, Marketing Communications, Content Creation, Generative AI, Design, Social Media Strategy, Design Elements And Principles, Typography, Social Media Marketing, Graphic and Visual Design, Marketing Strategies, Marketing Effectiveness, Adobe Creative Cloud, Data Ethics, Data Integrity",
+        "rating": "4.6",
+        "reviews": "367 reviews",
         "level_time": "Beginner \u00b7 Professional Certificate \u00b7 3 - 6 Months"
     },
     {
         "title": "IBM AI Product Manager",
         "link": "https://www.coursera.org/professional-certificates/ibm-ai-product-manager",
-        "skills": "Skills not found",
+        "description": "Skills you'll gain: Generative AI, New Product Development, Product Management, Product Lifecycle Management, Product Development, Innovation, Product Roadmaps, ChatGPT, Product Planning, Commercialization, Product Strategy, Artificial Intelligence, Project Management Life Cycle, Data Ethics, OpenAI, Product Marketing, Stakeholder Management, Competitive Analysis, Product Testing, Artificial Intelligence and Machine Learning (AI/ML)",
         "rating": "4.7",
         "reviews": "22K reviews",
         "level_time": "Beginner \u00b7 Professional Certificate \u00b7 3 - 6 Months"
@@ -42,58 +34,66 @@
     {
         "title": "AI in Education: Leveraging ChatGPT for Teaching",
         "link": "https://www.coursera.org/learn/wharton-ai-in-education-leveraging-chatgpt-for-teaching",
-        "skills": "Skills not found",
+        "description": "Skills you'll gain: Data Ethics, ChatGPT, Generative AI, OpenAI, Artificial Intelligence, Prototyping, Scenario Testing",
         "rating": "4.7",
-        "reviews": "96 reviews",
+        "reviews": "97 reviews",
         "level_time": "Beginner \u00b7 Course \u00b7 1 - 4 Weeks"
     },
     {
-        "title": "Fundamentals of Machine Learning and Artificial Intelligence",
-        "link": "https://www.coursera.org/learn/fundamentals-of-machine-learning-and-artificial-intelligence",
-        "skills": "Skills not found",
-        "rating": "4.4",
-        "reviews": "232 reviews",
-        "level_time": "Mixed \u00b7 Course \u00b7 1 - 4 Weeks"
+        "title": "Generative AI for Software Development",
+        "link": "https://www.coursera.org/professional-certificates/generative-ai-for-software-development",
+        "description": "Skills you'll gain: Database Design, Software Documentation, Software Design Patterns, Database Systems, Software Testing, ChatGPT, Technical Documentation, Generative AI, Software Design, Code Review, Software Architecture, Software Systems, System Design and Implementation, Dependency Analysis, Artificial Intelligence, Software Development Tools, OpenAI, Software Development, Natural Language Processing, Debugging",
+        "rating": "4.6",
+        "reviews": "455 reviews",
+        "level_time": "Beginner \u00b7 Professional Certificate \u00b7 1 - 3 Months"
     },
     {
-        "title": "Machine Learning",
-        "link": "https://www.coursera.org/specializations/machine-learning-introduction",
-        "skills": "Skills not found",
-        "rating": "4.9",
-        "reviews": "32K reviews",
-        "level_time": "Beginner \u00b7 Specialization \u00b7 1 - 3 Months"
-    },
-    {
-        "title": "AI For Business",
-        "link": "https://www.coursera.org/specializations/ai-for-business-wharton",
-        "skills": "Skills not found",
-        "rating": "4.7",
-        "reviews": "1.2K reviews",
-        "level_time": "Beginner \u00b7 Specialization \u00b7 3 - 6 Months"
+        "title": "AI For Everyone",
+        "link": "https://www.coursera.org/learn/ai-for-everyone",
+        "description": "Skills you'll gain: Data Ethics, Market Opportunities, Artificial Intelligence and Machine Learning (AI/ML), Artificial Intelligence, Team Building, Machine Learning, Strategic Thinking, Generative AI, Data Science, Deep Learning, Business Ethics, Artificial Neural Networks, Business Transformation",
+        "rating": "4.8",
+        "reviews": "46K reviews",
+        "level_time": "Beginner \u00b7 Course \u00b7 1 - 4 Weeks"
     },
     {
         "title": "IBM AI Developer",
         "link": "https://www.coursera.org/professional-certificates/applied-artifical-intelligence-ibm-watson-ai",
-        "skills": "Skills not found",
+        "description": "Skills you'll gain: Generative AI, Software Development Life Cycle, Unit Testing, ChatGPT, HTML and CSS, Development Environment, Web Design and Development, Jupyter, Hypertext Markup Language (HTML), Software Engineering, Artificial Intelligence, Cascading Style Sheets (CSS), Web Development, Data Ethics, Application Deployment, Web Applications, Automation, Interviewing Skills, CI/CD, Professional Networking",
         "rating": "4.6",
         "reviews": "63K reviews",
         "level_time": "Beginner \u00b7 Professional Certificate \u00b7 3 - 6 Months"
     },
     {
-        "title": "Artificial Intelligence",
-        "link": "https://www.coursera.org/learn/illinois-tech-artificial-intelligence",
-        "skills": "Skills not found",
-        "rating": "4.6",
-        "reviews": "14 reviews",
-        "level_time": "Beginner \u00b7 Course \u00b7 1 - 3 Months"
+        "title": "AI For Business",
+        "link": "https://www.coursera.org/specializations/ai-for-business-wharton",
+        "description": "Skills you'll gain: Generative AI, Data Ethics, HR Tech, Data Governance, Big Data, Machine Learning, Data Security, Governance, Business Strategy, Human Resources, Organizational Strategy, Credit Risk, Business Transformation, Risk Management, Tensorflow, Personalized Service, Digital Transformation, Data-Driven Decision-Making, Artificial Intelligence and Machine Learning (AI/ML), Artificial Intelligence",
+        "rating": "4.7",
+        "reviews": "1.2K reviews",
+        "level_time": "Beginner \u00b7 Specialization \u00b7 3 - 6 Months"
     },
     {
         "title": "IBM AI Engineering",
         "link": "https://www.coursera.org/professional-certificates/ai-engineer",
-        "skills": "Skills not found",
+        "description": "Skills you'll gain: PyTorch (Machine Learning Library), Supervised Learning, Feature Engineering, Generative AI, Keras (Neural Network Library), Jupyter, Unsupervised Learning, Natural Language Processing, Reinforcement Learning, Deep Learning, Scikit Learn (Machine Learning Library), Machine Learning Algorithms, Data Manipulation, Tensorflow, Python Programming, Verification And Validation, Applied Machine Learning, ChatGPT, Artificial Neural Networks, Statistical Machine Learning",
         "rating": "4.6",
         "reviews": "19K reviews",
         "level_time": "Intermediate \u00b7 Professional Certificate \u00b7 3 - 6 Months"
+    },
+    {
+        "title": "Fundamentals of Machine Learning and Artificial Intelligence",
+        "link": "https://www.coursera.org/learn/fundamentals-of-machine-learning-and-artificial-intelligence",
+        "description": "Skills you'll gain: Artificial Intelligence and Machine Learning (AI/ML), Generative AI, Deep Learning, Artificial Intelligence, Amazon Web Services, Applied Machine Learning, Machine Learning, Digital Transformation",
+        "rating": "4.5",
+        "reviews": "237 reviews",
+        "level_time": "Mixed \u00b7 Course \u00b7 1 - 4 Weeks"
+    },
+    {
+        "title": "AI Foundations for Everyone",
+        "link": "https://www.coursera.org/specializations/ai-foundations-for-everyone",
+        "description": "Skills you'll gain: ChatGPT, Generative AI, Artificial Intelligence, Data Ethics, OpenAI, Artificial Intelligence and Machine Learning (AI/ML), Deep Learning, Artificial Neural Networks, Application Deployment, IBM Cloud, Governance, Machine Learning, Business Transformation, Ethical Standards And Conduct, Computer Vision, Self Service Technologies, Information Architecture, Business Process Automation, Software Development Tools, Image Analysis",
+        "rating": "4.7",
+        "reviews": "23K reviews",
+        "level_time": "Beginner \u00b7 Specialization \u00b7 3 - 6 Months"
     },
     {
         "title": "What AI can tell us about microscope slides",

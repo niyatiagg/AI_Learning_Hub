@@ -27,16 +27,34 @@ async def close_db() -> None:
 app.on_startup(init_db)
 app.on_shutdown(close_db)
 
+def build_header():
+    """Builds the top navigation bar and user/logout section."""
+    with ui.header().classes('flex items-center justify-between text-white shadow-md p-4'):
+        with ui.row().classes('items-center gap-x-4'):
+            ui.label('AI Learning Hub').classes('text-3xl font-semi')
+        with ui.row().classes('items-center gap-x-6'):
+            ui.input(label="search query", placeholder="Search bar").on('keydown.enter', search).props('clearable rounded outlined dense outline')
+            ui.label(f'{app.storage.user["username"]}').classes('text-xl')
+            ui.chip(on_click=lambda: logout(), icon='logout').props('outline').classes('shadow-lg text-white')
+
 @ui.page('/')
 def main_page() -> None:
+    build_header()
+    with ui.dialog() as chat_dialog:
+        with ui.card():
+            chat_output = ui.column()
+            user_input = ui.input(placeholder="Ask me something about AI...")
+            ui.button("Send", on_click=lambda: asyncio.create_task(send_message(user_input, chat_output)))
+    ui.button("Chat with AI", on_click=chat_dialog.open).classes('fixed bottom-4 right-4 rounded-full bg-red-500 text-white p-2 shadow-lg hover:bg-red-600')
+
     def logout() -> None:
         app.storage.user.clear() #should we just clear session?
         ui.navigate.to('/login')
 
-    with ui.header().classes('items-right'):
-        ui.label(f'{app.storage.user["username"]}').classes('text-2xl').style('position: fixed; top: 20px; right: 100px; z-index: 1000;')
-        ui.button(on_click=logout, icon='logout').style('position: fixed; right: 20px; right: 20px; z-index: 1000;')
-        ui.input(label="search query", placeholder="what you looking for?").on('keydown.enter', search)
+    # with ui.header().classes('items-right'):
+    #     ui.label(f'{app.storage.user["username"]}').classes('text-2xl').style('position: fixed; top: 20px; right: 100px; z-index: 1000;')
+    #     ui.button(on_click=logout, icon='logout').style('position: fixed; right: 20px; right: 20px; z-index: 1000;')
+    #     ui.input(label="search query", placeholder="what you looking for?").on('keydown.enter', search)
 
     ui.link('Courses', courses)
     ui.link('Handbooks', github_repos)
@@ -55,7 +73,7 @@ def main_page() -> None:
             user_input = ui.input(placeholder="Ask me something about AI...")
             ui.button("Send", on_click=lambda: asyncio.create_task(send_message(user_input, chat_output)))
 
-    ui.button("Chat with AI", on_click=chat_dialog.open).style('position: fixed; bottom: 20px; right: 20px; z-index: 1000;')
+    # ui.button("Chat with AI", on_click=chat_dialog.open).style('position: fixed; bottom: 20px; right: 20px; z-index: 1000;')
 
 @ui.page('/trending_repos')
 async def trending_repos() -> None:
