@@ -67,14 +67,6 @@ def main_page() -> None:
     if app.storage.user['role'] == RoleType.ADMIN.value:
         ui.link('Admin', admin_page)
 
-    with ui.dialog() as chat_dialog:
-        with ui.card():
-            chat_output = ui.column()
-            user_input = ui.input(placeholder="Ask me something about AI...")
-            ui.button("Send", on_click=lambda: asyncio.create_task(send_message(user_input, chat_output)))
-
-    # ui.button("Chat with AI", on_click=chat_dialog.open).style('position: fixed; bottom: 20px; right: 20px; z-index: 1000;')
-
 @ui.page('/trending_repos')
 async def trending_repos() -> None:
     results = ui.row()
