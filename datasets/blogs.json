@@ -16,7 +16,7 @@
         "image_url": "https://lh3.googleusercontent.com/jOZg_YMBxrm-cz0kTZPehtQ29D90UZ21AXq9E54u3RZ67VEoXNy2KEsmD3oPgCDCIBw39ydczc8VQHH3QlUzIjdsgSPwIFdAEHXiHhsnUIKqmhppSQ=w400-h225-n-nu"
     },
     {
-        "post_link": "/discover/blog/updating-the-frontier-safety-framework/",
+        "post_link": "https://deepmind.google/discover/blog/updating-the-frontier-safety-framework/",
         "title": "Updating the Frontier Safety Framework",
         "category": "Responsibility & Safety",
         "description": "Our next iteration of the FSF sets out stronger security protocols on the path to AGI",
@@ -24,7 +24,7 @@
         "image_url": "https://lh3.googleusercontent.com/0fu18H8X3miSAuwcVJ7Zulis_LZAL7F4bIFU7FYFA2dGx3Rm3HHlm5N202B0dtKBuS7iI5SD1QgpFPuU-O3TPzb7iG1Ns-loZzinRB3M3X3W-MAgIQ=w400-h225-n-nu"
     },
     {
-        "post_link": "/discover/blog/facts-grounding-a-new-benchmark-for-evaluating-the-factuality-of-large-language-models/",
+        "post_link": "https://deepmind.google/discover/blog/facts-grounding-a-new-benchmark-for-evaluating-the-factuality-of-large-language-models/",
         "title": "FACTS Grounding: A new benchmark for evaluating the factuality of large language models",
         "category": "Responsibility & Safety",
         "description": "Our comprehensive benchmark and online leaderboard offer a much-needed measure of how accurately LLMs ground their responses in provided source material and avoid hallucinations",
@@ -88,7 +88,7 @@
         "image_url": "https://lh3.googleusercontent.com/013uzey1mkIgSCsLZ_PieJORMUI5F6yviXI7baiAmkEf8FF1-TC8TMVNY7GY67dejQ8sKtPDJTEbCb_KSaSgdknavAHiqRnd3V1i9fkE4yzBS1R-IA=w400-h225-n-nu"
     },
     {
-        "post_link": "/discover/blog/pushing-the-frontiers-of-audio-generation/",
+        "post_link": "https://deepmind.google/discover/blog/pushing-the-frontiers-of-audio-generation/",
         "title": "Pushing the frontiers of audio generation",
         "category": "Technologies",
         "description": "Our pioneering speech generation technologies are helping people around the world interact with more natural, conversational and intuitive digital assistants and AI tools.",
