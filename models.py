@@ -6,11 +6,11 @@ class RoleType(Enum):
     USER = 'user'
 
 class ResourceType(Enum):
-    BLOG = 'blog'
-    COURSE = 'course'
-    HANDBOOK = 'handbook'
-    REPOSITORY = 'repository'
-    RESEARCH_PAPER = 'research_paper'
+    BLOG = 'Blog'
+    COURSE = 'Course'
+    HANDBOOK = 'Handbook'
+    REPOSITORY = 'Repository'
+    RESEARCH_PAPER = 'Research Paper'
 
 class User(models.Model):
     id = fields.IntField(pk=True)

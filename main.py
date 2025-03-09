@@ -2,7 +2,7 @@
 import asyncio
 import httpx
 
-from admin import admin_page
+from admin import admin_page, submit_resource
 from langchain_openai import ChatOpenAI
 from log_callback_handler import NiceGuiLogElementCallbackHandler
 from auth import AuthMiddleware, login
@@ -84,6 +84,8 @@ def main_page() -> None:
 
     if app.storage.user['role'] == RoleType.ADMIN.value:
         ui.link('Admin', admin_page)
+    else:
+        ui.link('Submit Resource', submit_resource)
 
     ui.button('Chat', on_click=chat_dialog.open).classes('chat-button')
 
