@@ -37,6 +37,10 @@ def build_header():
             ui.label(f'{app.storage.user["username"]}').classes('text-xl')
             ui.chip(on_click=lambda: logout(), icon='logout').props('outline').classes('shadow-lg text-white')
 
+    def logout() -> None:
+        app.storage.user.clear() #should we just clear session?
+        ui.navigate.to('/login')
+
 @ui.page('/')
 def main_page() -> None:
     build_header()
@@ -48,10 +52,6 @@ def main_page() -> None:
                 user_input = ui.input(placeholder="Ask me something about AI...").classes('input-base').props('autofocus')
                 send_button = ui.button('Send', on_click=lambda: asyncio.create_task(send_message(user_input, chat_output))).classes('send-button')
     # ui.button('Chat', on_click=chat_dialog.open).classes('chat-button')
-
-    def logout() -> None:
-        app.storage.user.clear() #should we just clear session?
-        ui.navigate.to('/login')
 
     with ui.splitter(value=30).classes('w-full h-full') as splitter:
         with splitter.before:

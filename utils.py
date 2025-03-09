@@ -9,35 +9,38 @@ from typing import List
 async def courses(container) -> None:
     with container:
         with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
-            await load_resource_page(ResourceType.COURSE)
+            await resource_page(ResourceType.COURSE)
 
 # @ui.page('/research_papers')
 async def research_papers(container) -> None:
     with container:
         with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
-            await load_resource_page(ResourceType.RESEARCH_PAPER)
+            await resource_page(ResourceType.RESEARCH_PAPER)
 
 # @ui.page('/blogs')
 async def blogs(container) -> None:
     with container:
         with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
-            await load_resource_page(ResourceType.BLOG)
+            await resource_page(ResourceType.BLOG)
 
 # @ui.page('/github_repos')
 async def github_repos(container) -> None:
     with container:
         with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
-            await load_resource_page(ResourceType.REPOSITORY)
+            await resource_page(ResourceType.REPOSITORY)
 
 # @ui.page('/bookmarked')
 async def bookmarked(container) -> None:
     with container:
         with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
-            await load_resource_page()
+            await load_resource_page(None)
 
+async def resource_page(resource_type=None) -> None:
+    resources: List[models.Resource] = await models.Resource.filter(type=resource_type)
+    await load_resource_page(resources)
 
 # @ui.refreshable
-async def load_resource_page(resource_type=None) -> None:
+async def load_resource_page(resources) -> None:
     async def bookmark(rid) -> None:
         uid = app.storage.user.get('userid', None)
         if uid is not None:
@@ -50,11 +53,9 @@ async def load_resource_page(resource_type=None) -> None:
 
     bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
     bookmark_ids = [b.resourceid for b in bookmarks]
-    resources: List[models.Resource] = []
-    if resource_type is None:
-        resources = await models.Resource.filter(id__in=bookmark_ids)
-    else:
-        resources = await models.Resource.filter(type=resource_type)
+
+    if resources is None:
+        resources: List[models.Resource] = await models.Resource.filter(id__in=bookmark_ids)
 
     with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
         for res in resources:
@@ -81,19 +82,7 @@ async def load_resource_page(resource_type=None) -> None:
                         ui.chip('Unbookmark', selectable=True, icon='bookmark',
                                 on_click=lambda rid=res.id: unbookmark(rid)).classes('mt-2')
 
-
+@ui.page('/search')
 async def search(event: ValueChangeEventArguments) -> None:
     resources: List[models.Resource] = await models.Resource.filter(description__contains=event.sender.value)
-    with ui.list():
-        for resource in resources:  # iterate over the response data of the api
-            with ui.link(target=resource.url):
-                with ui.item():
-                    with ui.item_section().props('avatar'):
-                        ui.image(resource.image)
-                    with ui.item_section():
-                        ui.item_label(resource.title)
-                        ui.item_label(resource.description).props('caption')
-                        ui.item_label(resource.category).props('caption')
-                        ui.item_label(resource.date).props('caption')
-                        ui.item_label(resource.language).props('caption')
-                        ui.item_label(resource.authors).props('caption')
+    await load_resource_page(resources)
