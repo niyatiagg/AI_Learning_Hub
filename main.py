@@ -63,7 +63,6 @@ def main_page() -> None:
     ui.link('Research Papers', research_papers)
     ui.link('Blogs', blogs)
     ui.link('Bookmarked', bookmarked)
-    print(app.storage.user['role'])
     if app.storage.user['role'] == RoleType.ADMIN.value:
         ui.link('Admin', admin_page)
 
@@ -95,8 +94,7 @@ async def trending_repos() -> None:
     running_query = None
 
 
-OPENAI_API_KEY = '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'  # TODO: set your OpenAI API key here
-
+OPENAI_API_KEY = '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'
 llm = ChatOpenAI(model_name='gpt-3.5-turbo', streaming=True, openai_api_key=OPENAI_API_KEY)
 log = ui.log()  # Create a log element in the UI
 

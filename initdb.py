@@ -98,8 +98,8 @@ async def load_unapproved() -> None:
 
 async def load_users() -> None:
     await models.User.create(username='admin', password='admin', role=RoleType.ADMIN)
-    await models.User.create(username='user1', password='pass1', role=RoleType.USER)
-    await models.User.create(username='user2', password='pass2', role=RoleType.USER)
+    await models.User.create(username='mrudula', password='password', role=RoleType.USER)
+    await models.User.create(username='niyati', password='password', role=RoleType.USER)
 
 async def main():
     await init_db()
