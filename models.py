@@ -32,6 +32,9 @@ class Resource(models.Model):
     authors = fields.CharField(max_length=512, null=True)
     language = fields.CharField(max_length=64, null=True)
     stars = fields.IntField(null=True)
+    rating = fields.CharField(max_length=5, null=True)
+    review = fields.CharField(max_length=16, null=True)
+    duration = fields.CharField(max_length=64, null=True)
 
 class Unapproved(models.Model):
     title = fields.CharField(max_length=255)

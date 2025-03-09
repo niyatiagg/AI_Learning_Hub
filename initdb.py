@@ -2,6 +2,7 @@
 import asyncio
 import json, models
 
+from datetime import datetime
 from tortoise import Tortoise
 from models import ResourceType, RoleType
 
@@ -50,16 +51,19 @@ async def load_courses() -> None:
     with open('datasets/courses.json', 'r') as file:
         data = json.load(file)
     for item in data:
-        if 'description' in item:
+        if 'description' in item and item['description'] != "No description found.":
             await models.Resource.create(
                 title = item['title'],
                 category = item.get('category', None),
                 description = item['description'],
                 type = ResourceType.COURSE,
                 url = item['link'],
-                #date = item.get('date', None), #TODO: Fix logic for date
+                date = datetime.strptime(item['date'], "%b %d, %Y") if 'date' in item else None,
                 language = item.get('language', None),
-                authors = item['author']
+                authors = item.get('author', None),
+                rating = item.get('rating', None),
+                reviews = item.get('reviews', None),
+                duration = item.get('duration', None)
             )
 
 async def load_research_papers() -> None:
