@@ -153,9 +153,22 @@ def load_fragment(res) -> None:
                     ui.label(res.title).classes('text-lg font-semibold')
             else:
                 ui.label(res.title).classes('text-lg font-semibold')
-            ui.label(res.description).classes('text-sm')
-            # TODO: show rating, reviews, duration for coursera
-
-            # TODO: show stars, language for github repos
-
-            # TODO: show category, date, authors whereever available
+            if res.date:
+                ui.label(res.date).classes('text-sm')
+            if res.authors:
+                ui.label("Authors: " + res.authors).classes('text-sm')
+            if res.category:
+                ui.label("Category: " + res.category).classes('text-sm')
+            des = res.description if len(res.description) < 255 else res.description[:255] + '...More'
+            ui.label(des).classes('text-sm')
+            if res.rating:
+                ui.label("Rating: " + res.rating).classes('text-sm')
+            if res.review:
+                ui.label("Reviews: " + res.review).classes('text-sm')
+            if res.duration:
+                ui.label("Level time: " + res.duration).classes('text-sm')
+            if res.language:
+                ui.label("Language: " + res.language).classes('text-sm')
+            if res.stars:
+                #ui.icon('star').style('margin-right: -12px;').classes('text-md')
+                ui.label("Stars: " + str(res.stars)).classes('text-sm')

@@ -63,8 +63,8 @@ async def load_courses() -> None:
                 authors = item.get('author', None),
                 image=item['image_url'],
                 rating = item.get('rating', None),
-                reviews = item.get('reviews', None),
-                duration = item.get('duration', None)
+                review = item.get('reviews', None),
+                duration = item.get('level_time', None)
             )
 
 async def load_handbooks() -> None:
@@ -83,8 +83,8 @@ async def load_handbooks() -> None:
                 authors = item.get('author', None),
                 image=None,
                 rating = item.get('rating', None),
-                reviews = item.get('reviews', None),
-                duration = item.get('duration', None)
+                review = item.get('reviews', None),
+                duration = item.get('level_time', None)
             )
 
 async def load_research_papers() -> None:
@@ -102,9 +102,8 @@ async def load_research_papers() -> None:
             authors=item['authors']
         )
 
-#TODO: Enable form to submit for admin approval
 async def load_unapproved() -> None:
-    with open('datasets/blogs.json', 'r') as file:
+    with open('datasets/unapproved.json', 'r') as file:
         data = json.load(file)
     for item in data:
         await models.Unapproved.create(

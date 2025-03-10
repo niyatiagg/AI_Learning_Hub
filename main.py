@@ -57,13 +57,13 @@ def main_page() -> None:
         with splitter.before:
             with ui.tabs().props('vertical').classes('w-full') as tabs:
                 dashboard_tab = ui.tab('My Dashboard', icon='mail')
+                search_tab = ui.tab('Search', icon='search')
+                blogs_tab = ui.tab('Blogs', icon='rss_feed')
                 courses_tab = ui.tab('Courses', icon='school')
                 handbooks_tab = ui.tab('Handbooks', icon='library_books')
                 github_repos_tab = ui.tab('GitHub Repos', icon='eva-github').classes('text-2xl')
-                trending_repos_tab = ui.tab('Trending Repos', icon='trending_up')
                 research_papers_tab = ui.tab('Research Papers', icon='article')
-                search_tab = ui.tab('Search', icon='search')
-                blogs_tab = ui.tab('Blogs', icon='rss_feed')
+                trending_repos_tab = ui.tab('Trending Repos', icon='trending_up')
                 if app.storage.user['role'] == RoleType.ADMIN.value:
                     admin_tab = ui.tab('Admin Page', icon='admin_panel_settings')
                 # else:
@@ -74,20 +74,20 @@ def main_page() -> None:
                     .props('vertical').classes('w-full h-full'):
                 with ui.tab_panel(dashboard_tab) as dashboard_panel:
                     asyncio.create_task(bookmarked(dashboard_panel))
+                with ui.tab_panel(search_tab) as search_panel:
+                    asyncio.create_task(search(search_panel))
+                with ui.tab_panel(blogs_tab) as blogs_panel:
+                    asyncio.create_task(blogs(blogs_panel))
                 with ui.tab_panel(courses_tab) as course_panel:
                     asyncio.create_task(courses(course_panel))
                 with ui.tab_panel(handbooks_tab) as handbooks_panel:
                     asyncio.create_task(handbooks(handbooks_panel))
                 with ui.tab_panel(github_repos_tab) as github_panel:
                     asyncio.create_task(github_repos(github_panel))
-                with ui.tab_panel(trending_repos_tab) as trending_panel:
-                    asyncio.create_task(trending_repos(trending_panel))
                 with ui.tab_panel(research_papers_tab) as research_panel:
                     asyncio.create_task(research_papers(research_panel))
-                with ui.tab_panel(blogs_tab) as blogs_panel:
-                    asyncio.create_task(blogs(blogs_panel))
-                with ui.tab_panel(search_tab) as search_panel:
-                    asyncio.create_task(search(search_panel))
+                with ui.tab_panel(trending_repos_tab) as trending_panel:
+                    asyncio.create_task(trending_repos(trending_panel))
                 try:
                     with ui.tab_panel(admin_tab) as admin_panel:
                         asyncio.create_task(admin_page(admin_panel))
