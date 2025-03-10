@@ -1,3 +1,5 @@
+from tortoise.expressions import Q
+
 import models
 
 from models import ResourceType
@@ -32,10 +34,10 @@ async def search(container) -> None:
 
         results.clear()
         if resource_type is None:
-            resources: List[models.Resource] = await models.Resource.filter(description__contains=search_text)
+            resources: List[models.Resource] = await models.Resource.filter(Q(title__contains=search_text) | Q(description__contains=search_text))
         else:
-            resources: List[models.Resource] = await models.Resource.filter(type=resource_type,
-                                                                            description__contains=search_text)
+            resources: List[models.Resource] = await models.Resource.filter(Q(type=resource_type) &
+                                                                            (Q(title__contains=search_text) | Q(description__contains=search_text)))
         with results:
             for res in resources:
                 with ui.card().classes(
