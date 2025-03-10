@@ -6,7 +6,7 @@
         "rating": "4.7",
         "reviews": "17K reviews",
         "level_time": "Beginner \u00b7 Course \u00b7 1 - 4 Weeks",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/a7/edd3b41ddd45298d7bbcb04b19fba6/200766_Logo-Image_1200x1200pxl-copy-3.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
+        "image_url": "https://s3.amazonaws.com/coursera-course-photos/a7/edd3b41ddd45298d7bbcb04b19fba6/200766_Logo-Image_1200x1200pxl-copy-3.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
     },
     {
         "title": "AI For Everyone",
@@ -15,7 +15,7 @@
         "rating": "4.8",
         "reviews": "46K reviews",
         "level_time": "Beginner \u00b7 Course \u00b7 1 - 4 Weeks",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/41/763803169e4d31a5e7611bc928124b/Course-Logo.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
+        "image_url": "https://s3.amazonaws.com/coursera-course-photos/41/763803169e4d31a5e7611bc928124b/Course-Logo.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
     },
     {
         "title": "Generative AI for Software Development",
@@ -24,7 +24,7 @@
         "rating": "4.6",
         "reviews": "456 reviews",
         "level_time": "Beginner \u00b7 Professional Certificate \u00b7 1 - 3 Months",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/5e/c98bef7de04a8e971534c82c32ebd3/DeepLearning_Generative_AI_for_Software_Banner_1000x1000.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
+        "image_url": "https://d15cw65ipctsrr.cloudfront.net/5e/c98bef7de04a8e971534c82c32ebd3/DeepLearning_Generative_AI_for_Software_Banner_1000x1000.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
     },
     {
         "title": "IBM AI Product Manager",
@@ -33,7 +33,7 @@
         "rating": "4.7",
         "reviews": "22K reviews",
         "level_time": "Beginner \u00b7 Professional Certificate \u00b7 3 - 6 Months",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/5b/36b3f2a4b24e33990c54a11d0f6527/1200x1200_AdobeStock_534595938.jpg?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
+        "image_url": "https://d15cw65ipctsrr.cloudfront.net/5b/36b3f2a4b24e33990c54a11d0f6527/1200x1200_AdobeStock_534595938.jpg?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
     },
     {
         "title": "Adobe Marketing Specialist",
@@ -42,7 +42,7 @@
         "rating": "4.6",
         "reviews": "378 reviews",
         "level_time": "Beginner \u00b7 Professional Certificate \u00b7 3 - 6 Months",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/f4/c1bfb46d6f4eb4900c486c83ebfac0/Marketing-Specialist.jpg?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
+        "image_url": "https://d15cw65ipctsrr.cloudfront.net/f4/c1bfb46d6f4eb4900c486c83ebfac0/Marketing-Specialist.jpg?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
     },
     {
         "title": "AI in Education: Leveraging ChatGPT for Teaching",
@@ -51,7 +51,7 @@
         "rating": "4.7",
         "reviews": "98 reviews",
         "level_time": "Beginner \u00b7 Course \u00b7 1 - 4 Weeks",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/09/b613df68bd40cbab2d5085ff665da4/transforming-classrooms-with-ai.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
+        "image_url": "https://s3.amazonaws.com/coursera-course-photos/09/b613df68bd40cbab2d5085ff665da4/transforming-classrooms-with-ai.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
     },
     {
         "title": "Machine Learning",
@@ -60,7 +60,7 @@
         "rating": "4.9",
         "reviews": "32K reviews",
         "level_time": "Beginner \u00b7 Specialization \u00b7 1 - 3 Months",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/3a/9d2a7af297483a845340bcfbac6f1e/MLS.course-banners-01_Course-Logo-.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
+        "image_url": "https://d15cw65ipctsrr.cloudfront.net/3a/9d2a7af297483a845340bcfbac6f1e/MLS.course-banners-01_Course-Logo-.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
     },
     {
         "title": "AI Foundations for Everyone",
@@ -69,7 +69,7 @@
         "rating": "4.7",
         "reviews": "23K reviews",
         "level_time": "Beginner \u00b7 Specialization \u00b7 3 - 6 Months",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/e4/2ad28cd9a946a2ae5c76a2fa680bbe/Specialization-Certificate-Emblem---AI-Foundations.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
+        "image_url": "https://d15cw65ipctsrr.cloudfront.net/e4/2ad28cd9a946a2ae5c76a2fa680bbe/Specialization-Certificate-Emblem---AI-Foundations.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
     },
     {
         "title": "AI For Business",
@@ -78,7 +78,7 @@
         "rating": "4.7",
         "reviews": "1.2K reviews",
         "level_time": "Beginner \u00b7 Specialization \u00b7 3 - 6 Months",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/fd/7fcc4c8bf54aef866dcc9e14d07021/AIforBusiness_specialization_coursera.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
+        "image_url": "https://d15cw65ipctsrr.cloudfront.net/fd/7fcc4c8bf54aef866dcc9e14d07021/AIforBusiness_specialization_coursera.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
     },
     {
         "title": "IBM AI Engineering",
@@ -87,7 +87,7 @@
         "rating": "4.6",
         "reviews": "20K reviews",
         "level_time": "Intermediate \u00b7 Professional Certificate \u00b7 3 - 6 Months",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/a2/922bfdcbbe4ac1a413253209b11611/Professional-Certificate---AI-Engineering.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
+        "image_url": "https://d15cw65ipctsrr.cloudfront.net/a2/922bfdcbbe4ac1a413253209b11611/Professional-Certificate---AI-Engineering.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
     },
     {
         "title": "IBM AI Developer",
@@ -96,7 +96,7 @@
         "rating": "4.6",
         "reviews": "64K reviews",
         "level_time": "Beginner \u00b7 Professional Certificate \u00b7 3 - 6 Months",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/f3/2b860471b441f38659038b5ce24c1e/image-1-1-.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
+        "image_url": "https://d15cw65ipctsrr.cloudfront.net/f3/2b860471b441f38659038b5ce24c1e/image-1-1-.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
     },
     {
         "title": "Fundamentals of Machine Learning and Artificial Intelligence",
@@ -105,7 +105,7 @@
         "rating": "4.5",
         "reviews": "239 reviews",
         "level_time": "Mixed \u00b7 Course \u00b7 1 - 4 Weeks",
-        "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/a1/e05713dc4c468794ff8474ddfab441/Screenshot-2024-07-29-at-4.25.23-PM.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
+        "image_url": "https://s3.amazonaws.com/coursera-course-photos/a1/e05713dc4c468794ff8474ddfab441/Screenshot-2024-07-29-at-4.25.23-PM.png?auto=format%2Ccompress&dpr=2&blur=200&px=8&max-w=265"
     },
     {
         "title": "What AI can tell us about microscope slides",
