@@ -45,17 +45,19 @@ async def resource_page(resource_type=None) -> None:
     resources: List[models.Resource] = await models.Resource.filter(type=resource_type)
     await load_resource_page(resources)
 
-# @ui.refreshable
+@ui.refreshable
 async def load_resource_page(resources) -> None:
     async def bookmark(rid) -> None:
         uid = app.storage.user.get('userid', None)
         if uid is not None:
             await models.Bookmark.create(userid=uid, resourceid=rid)
+        load_resource_page.refresh()
 
     async def unbookmark(rid) -> None:
         uid = app.storage.user.get('userid', None)
         if uid is not None:
             await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
+        load_resource_page.refresh()
 
     bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
     bookmark_ids = [b.resourceid for b in bookmarks]
