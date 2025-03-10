@@ -41,7 +41,6 @@ async def admin_table() -> None:
 @ui.page('/submit_resource')
 async def submit_resource() -> None:
     async def submit() -> None:
-        print(resource_type)
         await models.Unapproved.create(title=title.value, description=description.value, type=resource_type, url=url.value,
                                      image=image.value)
         title.value=''
@@ -51,7 +50,6 @@ async def submit_resource() -> None:
 
     resource_type = ResourceType.BLOG
     def notify(value: ResourceType) -> None:
-        print(value)
         nonlocal resource_type
         resource_type = value
 

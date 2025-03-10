@@ -33,8 +33,6 @@ def build_header():
         with ui.row().classes('items-center gap-x-4'):
             ui.label('AI Learning Hub').classes('text-4xl font-semi')
         with ui.row().classes('items-center gap-x-6'):
-            ui.icon('search').classes('text-xl').style('position: absolute; padding-left: 180px; color: grey;')
-            ui.input(label="search query", placeholder="Search bar").on('keydown.enter', search).props('clearable outlined dense outline').style('background-color: white; margin-left: 20px;')
             ui.label(f'{app.storage.user["username"]}').classes('text-2xl')
             ui.chip(on_click=lambda: logout(), icon='logout', color='white').props('outline').classes('shadow-lg text-white').style('width: 10%;')
 
@@ -64,6 +62,7 @@ def main_page() -> None:
                 github_repos_tab = ui.tab('GitHub Repos', icon='eva-github').classes('text-2xl')
                 trending_repos_tab = ui.tab('Trending Repos', icon='trending_up')
                 research_papers_tab = ui.tab('Research Papers', icon='article')
+                search_tab = ui.tab('Search', icon='search')
                 blogs_tab = ui.tab('Blogs', icon='rss_feed')
                 if app.storage.user['role'] == RoleType.ADMIN.value:
                     admin_tab = ui.tab('Admin Page', icon='admin_panel_settings')
@@ -87,6 +86,8 @@ def main_page() -> None:
                     asyncio.create_task(research_papers(research_panel))
                 with ui.tab_panel(blogs_tab) as blogs_panel:
                     asyncio.create_task(blogs(blogs_panel))
+                with ui.tab_panel(search_tab) as search_panel:
+                    asyncio.create_task(search(search_panel))
                 try:
                     with ui.tab_panel(admin_tab) as admin_panel:
                         asyncio.create_task(admin_page(admin_panel))

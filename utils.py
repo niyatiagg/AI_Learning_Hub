@@ -5,6 +5,73 @@ from nicegui.events import ValueChangeEventArguments
 from nicegui import app, events, ui
 from typing import List
 
+async def search(container) -> None:
+    results = None
+    resource_type = None
+    search_text = None
+
+    @ui.refreshable
+    async def search_results() -> None:
+        nonlocal results, resource_type, search_text
+        async def bookmark(rid) -> None:
+            uid = app.storage.user.get('userid', None)
+            if uid is not None:
+                await models.Bookmark.create(userid=uid, resourceid=rid)
+            search_results.refresh()
+            load_resource_page.refresh()
+
+        async def unbookmark(rid) -> None:
+            uid = app.storage.user.get('userid', None)
+            if uid is not None:
+                await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
+            search_results.refresh()
+            load_resource_page.refresh()
+
+        bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
+        bookmark_ids = [b.resourceid for b in bookmarks]
+
+        results.clear()
+        if resource_type is None:
+            resources: List[models.Resource] = await models.Resource.filter(description__contains=search_text)
+        else:
+            resources: List[models.Resource] = await models.Resource.filter(type=resource_type,
+                                                                            description__contains=search_text)
+        with results:
+            for res in resources:
+                with ui.card().classes(
+                        'flex flex-col w-96 shadow-lg hover:shadow-xl transition-shadow duration-300 min-h-96'):
+                    load_fragment(res)
+                    if res.id not in bookmark_ids:
+                        ui.chip('Bookmark', selectable=True, icon='bookmark', text_color="white",
+                                on_click=lambda rid=res.id: bookmark(rid)).classes('mt-2').props("dark")
+                    else:
+                        ui.chip('Unbookmark', selectable=True, icon='bookmark', text_color="white", color='green',
+                                on_click=lambda rid=res.id: unbookmark(rid)).classes('mt-2')
+
+    async def seee(event: ValueChangeEventArguments) -> None:
+        nonlocal search_text
+        search_text = event.sender.value
+        await search_results()
+
+
+    async def notify(value: ResourceType) -> None:
+        nonlocal resource_type
+        resource_type = value
+        await search_results()
+
+
+    with container:
+        ui.icon('search').classes('text-xl').style('position: absolute; padding-left: 180px; color: grey;')
+        ui.input(label="search query", placeholder="Search bar").on('keydown.enter', seee).props(
+            'clearable outlined dense outline').style('background-color: white; margin-left: 20px;')
+        ui.select(label="Resource Type",
+                  options=[ResourceType.BLOG, ResourceType.COURSE, ResourceType.HANDBOOK, ResourceType.REPOSITORY,
+                           ResourceType.RESEARCH_PAPER], value=None,
+                  on_change=lambda e: notify(e.value)).style("width:40%")
+        results = ui.row().classes('flex flex-wrap justify-start items-stretch gap-4')
+
+
+
 # @ui.page('/blogs')
 async def blogs(container) -> None:
     with container:
@@ -69,28 +136,26 @@ async def load_resource_page(resources) -> None:
         for res in resources:
             with ui.card().classes(
                     'flex flex-col w-96 shadow-lg hover:shadow-xl transition-shadow duration-300 min-h-96'):
-                if res.image is not None:
-                    ui.image(res.image).classes('w-full h-48 object-cover')  # Adjust size as necessary
-                with ui.column().classes('flex-grow p-4'):
-                    if res.url:
-                        with ui.link(target=res.url):
-                            ui.label(res.title).classes('text-lg font-semibold')
-                    else:
-                        ui.label(res.title).classes('text-lg font-semibold')
-                    ui.label(res.description).classes('text-sm')
-                    #TODO: show rating, reviews, duration for coursera
+                load_fragment(res)
+                if res.id not in bookmark_ids:
+                    ui.chip('Bookmark', selectable=True, icon='bookmark', text_color="white",
+                            on_click=lambda rid=res.id: bookmark(rid)).classes('mt-2').props("dark")
+                else:
+                    ui.chip('Unbookmark', selectable=True, icon='bookmark', text_color="white", color='green',
+                            on_click=lambda rid=res.id: unbookmark(rid)).classes('mt-2')
 
-                    #TODO: show stars, language for github repos
+def load_fragment(res) -> None:
+        if res.image is not None:
+            ui.image(res.image).classes('w-full h-48 object-cover')  # Adjust size as necessary
+        with ui.column().classes('flex-grow p-4'):
+            if res.url:
+                with ui.link(target=res.url):
+                    ui.label(res.title).classes('text-lg font-semibold')
+            else:
+                ui.label(res.title).classes('text-lg font-semibold')
+            ui.label(res.description).classes('text-sm')
+            # TODO: show rating, reviews, duration for coursera
 
-                    #TODO: show category, date, authors whereever available
-                    if res.id not in bookmark_ids:
-                        ui.chip('Bookmark', selectable=True, icon='bookmark', text_color="white", 
-                                on_click=lambda rid=res.id: bookmark(rid)).classes('mt-2').props("dark")
-                    else:
-                        ui.chip('Unbookmark', selectable=True, icon='bookmark', text_color="white", color='green',
-                                on_click=lambda rid=res.id: unbookmark(rid)).classes('mt-2')
+            # TODO: show stars, language for github repos
 
-@ui.page('/search')
-async def search(event: ValueChangeEventArguments) -> None:
-    resources: List[models.Resource] = await models.Resource.filter(description__contains=event.sender.value)
-    await load_resource_page(resources)
+            # TODO: show category, date, authors whereever available
