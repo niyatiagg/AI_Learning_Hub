@@ -51,7 +51,7 @@ async def load_courses() -> None:
     with open('datasets/courses.json', 'r') as file:
         data = json.load(file)
     for item in data:
-        if 'description' in item and item['description'] != "No description found.":
+        if 'description' in item and item['description'] != "No description found." and item['image_url'] is not None:
             await models.Resource.create(
                 title = item['title'],
                 category = item.get('category', None),
@@ -61,7 +61,27 @@ async def load_courses() -> None:
                 date = datetime.strptime(item['date'], "%b %d, %Y") if 'date' in item else None,
                 language = item.get('language', None),
                 authors = item.get('author', None),
-                image=item.get('image_url', None),
+                image=item['image_url'],
+                rating = item.get('rating', None),
+                reviews = item.get('reviews', None),
+                duration = item.get('duration', None)
+            )
+
+async def load_handbooks() -> None:
+    with open('datasets/courses.json', 'r') as file:
+        data = json.load(file)
+    for item in data:
+        if 'description' in item and item['description'] != "No description found." and item['image_url'] is None:
+            await models.Resource.create(
+                title = item['title'],
+                category = item.get('category', None),
+                description = item['description'],
+                type = ResourceType.HANDBOOK,
+                url = item['link'],
+                date = datetime.strptime(item['date'], "%b %d, %Y") if 'date' in item else None,
+                language = item.get('language', None),
+                authors = item.get('author', None),
+                image=None,
                 rating = item.get('rating', None),
                 reviews = item.get('reviews', None),
                 duration = item.get('duration', None)
@@ -106,6 +126,7 @@ async def main():
     await init_db()
     await load_blogs()
     await load_courses()
+    await load_handbooks()
     await load_repos()
     await load_research_papers()
     await load_unapproved()

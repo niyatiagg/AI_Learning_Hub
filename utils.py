@@ -5,23 +5,29 @@ from nicegui.events import ValueChangeEventArguments
 from nicegui import app, events, ui
 from typing import List
 
+# @ui.page('/blogs')
+async def blogs(container) -> None:
+    with container:
+        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
+            await resource_page(ResourceType.BLOG)
+
 # @ui.page('/courses')
 async def courses(container) -> None:
     with container:
         with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
             await resource_page(ResourceType.COURSE)
 
+# @ui.page('/courses')
+async def handbooks(container) -> None:
+    with container:
+        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
+            await resource_page(ResourceType.HANDBOOK)
+
 # @ui.page('/research_papers')
 async def research_papers(container) -> None:
     with container:
         with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
             await resource_page(ResourceType.RESEARCH_PAPER)
-
-# @ui.page('/blogs')
-async def blogs(container) -> None:
-    with container:
-        with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
-            await resource_page(ResourceType.BLOG)
 
 # @ui.page('/github_repos')
 async def github_repos(container) -> None:

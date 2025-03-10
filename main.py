@@ -11,7 +11,7 @@ from tortoise import Tortoise
 from typing import Optional
 
 from models import RoleType
-from utils import bookmarked, blogs, courses, github_repos, research_papers, search
+from utils import bookmarked, blogs, courses, handbooks, github_repos, research_papers, search
 
 api = httpx.AsyncClient()
 running_query: Optional[asyncio.Task] = None
@@ -78,7 +78,7 @@ def main_page() -> None:
                 with ui.tab_panel(courses_tab) as course_panel:
                     asyncio.create_task(courses(course_panel))
                 with ui.tab_panel(handbooks_tab) as handbooks_panel:
-                    asyncio.create_task(github_repos(handbooks_panel))
+                    asyncio.create_task(handbooks(handbooks_panel))
                 with ui.tab_panel(github_repos_tab) as github_panel:
                     asyncio.create_task(github_repos(github_panel))
                 with ui.tab_panel(trending_repos_tab) as trending_panel:
