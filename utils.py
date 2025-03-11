@@ -177,7 +177,7 @@ def load_fragment(res) -> None:
                 #ui.icon('star').style('margin-right: -12px;').classes('text-md')
                 ui.label("Stars: " + str(res.stars)).classes('text-sm')
                 with ui.link(target="https://github.com/" + res.title + "/graphs/contributors", new_tab=True):
-                    ui.chip('Contributors')
+                    ui.chip('Contributors', text_color='white').style('position:absolute; bottom: 16px; right:5px;')
 
 async def submit_resource_util(container) -> None:
     async def submit() -> None:
