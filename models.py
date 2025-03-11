@@ -11,6 +11,7 @@ class ResourceType(Enum):
     HANDBOOK = 'Handbook'
     REPOSITORY = 'Repository'
     RESEARCH_PAPER = 'Research Paper'
+    SELECT = 'Select'
 
 class User(models.Model):
     id = fields.IntField(pk=True)

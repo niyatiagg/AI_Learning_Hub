@@ -9,7 +9,7 @@ from typing import List
 
 async def search(container) -> None:
     results = None
-    resource_type = None
+    resource_type = ResourceType.SELECT
     search_text = ''
 
     @ui.refreshable
@@ -33,11 +33,11 @@ async def search(container) -> None:
         bookmark_ids = [b.resourceid for b in bookmarks]
 
         results.clear()
-        if resource_type in [e.value for e in ResourceType]:
-            resources: List[models.Resource] = await models.Resource.filter(Q(title__contains=search_text) | Q(description__contains=search_text))
+        if resource_type == ResourceType.SELECT:
+            resources: List[models.Resource] = await models.Resource.filter(Q(title__contains=search_text) | Q(description__contains=search_text)).order_by('-rating', '-stars', '-date')
         else:
             resources: List[models.Resource] = await models.Resource.filter(Q(type=resource_type) &
-                                                                            (Q(title__contains=search_text) | Q(description__contains=search_text)))
+                                                                            (Q(title__contains=search_text) | Q(description__contains=search_text))).order_by('-rating', '-stars', '-date')
         with results:
             for res in resources:
                 with ui.card().classes(
@@ -69,8 +69,8 @@ async def search(container) -> None:
             ui.input(label="search query", placeholder="Search bar").on('keydown.enter', seee).props(
                 'clearable outlined dense outline standout v-model="text" dense="dense" size=32').style('background-color: white; margin-left: 20px;')
             ui.select(label="Resource Type",
-                      options=['Select', ResourceType.BLOG, ResourceType.COURSE, ResourceType.HANDBOOK, ResourceType.REPOSITORY,
-                               ResourceType.RESEARCH_PAPER], value=None,
+                      options=[ResourceType.BLOG, ResourceType.COURSE, ResourceType.HANDBOOK, ResourceType.REPOSITORY,
+                           ResourceType.RESEARCH_PAPER, ResourceType.SELECT], value=ResourceType.SELECT,
                       on_change=lambda e: notify(e.value)).style("width:15%; margin-top: -20px;")
         results = ui.row().classes('flex flex-wrap justify-start items-stretch gap-4')
 
@@ -134,7 +134,7 @@ async def load_resource_page(resources) -> None:
     bookmark_ids = [b.resourceid for b in bookmarks]
 
     if resources is None:
-        resources: List[models.Resource] = await models.Resource.filter(id__in=bookmark_ids)
+        resources: List[models.Resource] = await models.Resource.filter(id__in=bookmark_ids).order_by('-rating', '-stars', '-date')
 
     with ui.row().classes('flex flex-wrap justify-start items-stretch gap-4'):
         for res in resources:
