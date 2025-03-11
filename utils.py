@@ -2,6 +2,7 @@ from tortoise.expressions import Q
 
 import models
 
+from main import trend
 from models import ResourceType
 from nicegui.events import ValueChangeEventArguments
 from nicegui import app, events, ui
@@ -20,6 +21,7 @@ async def search(container) -> None:
             if uid is not None:
                 await models.Bookmark.create(userid=uid, resourceid=rid)
             search_results.refresh()
+            trend.refresh()
             load_resource_page.refresh()
 
         async def unbookmark(rid) -> None:
@@ -28,6 +30,7 @@ async def search(container) -> None:
                 await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
             search_results.refresh()
             load_resource_page.refresh()
+            trend.refresh()
 
         bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
         bookmark_ids = [b.resourceid for b in bookmarks]
@@ -123,12 +126,14 @@ async def load_resource_page(resources) -> None:
         if uid is not None:
             await models.Bookmark.create(userid=uid, resourceid=rid)
         load_resource_page.refresh()
+        trend.refresh()
 
     async def unbookmark(rid) -> None:
         uid = app.storage.user.get('userid', None)
         if uid is not None:
             await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
         load_resource_page.refresh()
+        trend.refresh()
 
     bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
     bookmark_ids = [b.resourceid for b in bookmarks]
