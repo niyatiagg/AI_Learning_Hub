@@ -3,7 +3,7 @@ import asyncio
 import httpx
 
 import models
-from admin import admin_page, submit_resource
+from admin import admin_page
 from langchain_openai import ChatOpenAI
 from log_callback_handler import NiceGuiLogElementCallbackHandler
 from auth import AuthMiddleware, login
@@ -12,7 +12,7 @@ from tortoise import Tortoise
 from typing import Optional, List
 
 from models import RoleType
-from utils import bookmarked, blogs, courses, handbooks, github_repos, load_resource_page, research_papers, search
+from utils import bookmarked, blogs, courses, handbooks, github_repos, load_resource_page, research_papers, search, submit_resource_util
 
 api = httpx.AsyncClient()
 running_query: Optional[asyncio.Task] = None
@@ -32,10 +32,11 @@ def build_header():
     """Builds the top navigation bar and user/logout section."""
     with ui.header().classes('flex items-center justify-between text-white shadow-md p-4'):
         with ui.row().classes('items-center gap-x-4'):
-            ui.label('AI Learning Hub').classes('text-4xl font-semi')
+            ui.label('AI Learning Hub').classes('text-4xl font-bold')
         with ui.row().classes('items-center gap-x-6'):
-            ui.label(f'{app.storage.user["username"]}').classes('text-2xl')
-            ui.chip(on_click=lambda: logout(), icon='logout', color='white').props('outline').classes('shadow-lg text-white').style('width: 10%;')
+            ui.icon('account_circle', color='white').classes('text-2xl')
+            ui.label(f'{app.storage.user["username"]}').classes('text-2xl font-semibold').style('margin-left: -20px;')
+            ui.chip(on_click=lambda: logout(), icon='logout', color='white').props('outline').classes('shadow-lg text-white').style('width: 20%;')
 
     def logout() -> None:
         app.storage.user.clear() #should we just clear session?
@@ -48,8 +49,8 @@ def main_page() -> None:
         with ui.card().style('width: 600px; height: 600px;'):
             ui.label('Chat with AI').classes('header-label')
             chat_output = ui.column().classes('chat-output')
-            with ui.row().classes('items-center gap-x-2'):
-                user_input = ui.input(placeholder="Ask me something about AI...").classes('input-base').props('autofocus')
+            with ui.row().classes('items-center gap-x-2').style("position: absolute; bottom: 20px"):
+                user_input = ui.input(placeholder="Ask me something about AI...").classes('input-base').props('autofocus size=60')
                 send_button = ui.button('Send', on_click=lambda: asyncio.create_task(send_message(user_input, chat_output))).classes('send-button')
     # ui.button('Chat', on_click=chat_dialog.open).classes('chat-button')
 
@@ -67,8 +68,8 @@ def main_page() -> None:
                 trending_repos_tab = ui.tab('Trending Repos', icon='trending_up')
                 if app.storage.user['role'] == RoleType.ADMIN.value:
                     admin_tab = ui.tab('Admin Page', icon='admin_panel_settings')
-                # else:
-                #     resource_tab = ui.tab('Submit Resource', icon='rss_feed')
+                else:
+                    resource_tab = ui.tab('Submit Resource', icon='cloud_upload')
                     # ui.link('Submit Resource', submit_resource)
         with splitter.after:
             with ui.tab_panels(tabs, value=dashboard_tab) \
@@ -95,23 +96,23 @@ def main_page() -> None:
                 except NameError:
                     # Not an admin user
                     print("Not an admin user")
-                # try:
-                #     with ui.tab_panel(resource_tab) as resource_panel:
-                #         asyncio.create_task(submit_resource_util(research_panel))
-                # except NameError:
-                #     # Not a normal user
-                #     print("Not a normal user")
+                try:
+                    with ui.tab_panel(resource_tab) as resource_panel:
+                        asyncio.create_task(submit_resource_util(resource_panel))
+                except NameError:
+                    # Not a normal user
+                    print("Not a normal user")
 
-    with ui.page_sticky(x_offset=18, y_offset=80):
+    with ui.page_sticky(x_offset=18, y_offset=18):
         ui.button('AI Bot', icon='smart_toy', on_click=chat_dialog.open).classes('chat-button')
 
-    if app.storage.user['role'] == RoleType.USER.value:
-        with ui.page_sticky(x_offset=18, y_offset=18):
-            link = ui.link('Submit Resource', submit_resource)
-            link.style(
-                'background-color: #17A2B8; color: white; padding: 10px 20px; text-align: center; '
-                'text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; '
-                'cursor: pointer; border-radius: 4px; border: none;')
+    # if app.storage.user['role'] == RoleType.USER.value:
+    #     with ui.page_sticky(x_offset=18, y_offset=18):
+    #         link = ui.link('Submit Resource', submit_resource)
+    #         link.style(
+    #             'background-color: #17A2B8; color: white; padding: 10px 20px; text-align: center; '
+    #             'text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; '
+    #             'cursor: pointer; border-radius: 4px; border: none;')
 
 async def trending_repos(container) -> None:
     with container:
@@ -186,7 +187,7 @@ async def trend(repos) -> None:
                         ui.item_label(repo['watchers_count']).props('caption').classes('text-md')
                         with ui.link(target="https://github.com/" + repo['full_name'] + "/graphs/contributors",
                                      new_tab=True):
-                            ui.chip('Contributors')
+                            ui.chip('Contributors', text_color='white')
                 if repo['html_url'] not in bookmarked_urls:
                     ui.chip('Bookmark', selectable=True, icon='bookmark', text_color="white",
                             on_click=lambda rep=repo: bookmark(rep)).classes('mt-2').props("dark")

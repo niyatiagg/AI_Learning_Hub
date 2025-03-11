@@ -64,13 +64,14 @@ async def search(container) -> None:
 
 
     with container:
-        ui.icon('search').classes('text-xl').style('position: absolute; padding-left: 180px; color: grey;')
-        ui.input(label="search query", placeholder="Search bar").on('keydown.enter', seee).props(
-            'clearable outlined dense outline').style('background-color: white; margin-left: 20px;')
-        ui.select(label="Resource Type",
-                  options=['Select', ResourceType.BLOG, ResourceType.COURSE, ResourceType.HANDBOOK, ResourceType.REPOSITORY,
-                           ResourceType.RESEARCH_PAPER], value=None,
-                  on_change=lambda e: notify(e.value)).style("width:40%")
+        with ui.row().classes('w-full justify-right items-center'):
+            ui.icon('search').classes('text-xl').style('position: absolute; padding-left: 260px; padding-top: 2px; color: grey;')
+            ui.input(label="search query", placeholder="Search bar").on('keydown.enter', seee).props(
+                'clearable outlined dense outline standout v-model="text" dense="dense" size=32').style('background-color: white; margin-left: 20px;')
+            ui.select(label="Resource Type",
+                      options=['Select', ResourceType.BLOG, ResourceType.COURSE, ResourceType.HANDBOOK, ResourceType.REPOSITORY,
+                               ResourceType.RESEARCH_PAPER], value=None,
+                      on_change=lambda e: notify(e.value)).style("width:15%; margin-top: -20px;")
         results = ui.row().classes('flex flex-wrap justify-start items-stretch gap-4')
 
 
@@ -159,11 +160,11 @@ def load_fragment(res) -> None:
             if res.date:
                 ui.label(res.date).classes('text-sm')
             if res.authors:
-                ui.label("Authors: " + res.authors).classes('text-sm')
+                ui.label("Authors: " + res.authors).classes('text-sm font-semibold').style('font-family: system-ui')
             if res.category:
                 ui.label("Category: " + res.category).classes('text-sm')
             des = res.description if len(res.description) < 255 else res.description[:255] + '...More'
-            ui.label(des).classes('text-sm')
+            ui.label(des).classes('text-md')
             if res.rating:
                 ui.label("Rating: " + res.rating).classes('text-sm')
             if res.review:
@@ -177,3 +178,31 @@ def load_fragment(res) -> None:
                 ui.label("Stars: " + str(res.stars)).classes('text-sm')
                 with ui.link(target="https://github.com/" + res.title + "/graphs/contributors", new_tab=True):
                     ui.chip('Contributors')
+
+async def submit_resource_util(container) -> None:
+    async def submit() -> None:
+        await models.Unapproved.create(title=title.value, description=description.value, type=resource_type, url=url.value,authors=authors.value,
+                                     image=image.value)
+        title.value=''
+        description.value=''
+        url.value=''
+        image.value=''
+        authors.value=''
+        ui.notify(f'Resource submitted successfully. Pending Admin Approval.')
+
+    resource_type = ResourceType.BLOG
+    def notify(value: ResourceType) -> None:
+        nonlocal resource_type
+        resource_type = value
+    with container:
+        with ui.card().style("margin-left:10%;width:80%;font-size:15px"):
+            ui.label("Enter Resource Details:")
+            ui.select(label="Resource Type",
+                      options=[ResourceType.BLOG, ResourceType.COURSE, ResourceType.HANDBOOK, ResourceType.REPOSITORY,
+                               ResourceType.RESEARCH_PAPER], value=ResourceType.BLOG, on_change=lambda e: notify(e.value)).style("width:40%"),
+            title = ui.input('Title').style("width:40%")
+            description = ui.input('Description').style("width:80%")
+            authors = ui.input('Author').style("width:80%")
+            url = ui.input('Url').style("width:80%")
+            image = ui.input('Image').style("width:80%")
+            ui.button("Submit", icon='upload', on_click=lambda: submit())
