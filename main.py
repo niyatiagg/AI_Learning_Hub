@@ -101,12 +101,16 @@ def main_page() -> None:
                 #     # Not a normal user
                 #     print("Not a normal user")
 
+    with ui.page_sticky(x_offset=18, y_offset=80):
+        ui.button('AI Bot', icon='smart_toy', on_click=chat_dialog.open).classes('chat-button')
 
     if app.storage.user['role'] == RoleType.USER.value:
-        ui.link('Submit Resource', submit_resource)
-
-    with ui.page_sticky(x_offset=18, y_offset=18):
-        ui.button('Chat', icon='smart_toy', on_click=chat_dialog.open).classes('chat-button')
+        with ui.page_sticky(x_offset=18, y_offset=18):
+            link = ui.link('Submit Resource', submit_resource)
+            link.style(
+                'background-color: #17A2B8; color: white; padding: 10px 20px; text-align: center; '
+                'text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; '
+                'cursor: pointer; border-radius: 4px; border: none;')
 
 # @ui.page('/trending_repos')
 async def trending_repos(container) -> None:
