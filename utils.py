@@ -19,17 +19,17 @@ async def search(container) -> None:
             uid = app.storage.user.get('userid', None)
             if uid is not None:
                 await models.Bookmark.create(userid=uid, resourceid=rid)
-            search_results.refresh()
-            trend.refresh()
             load_resource_page.refresh()
+            trend.refresh()
+            search_results.refresh()
 
         async def unbookmark(rid) -> None:
             uid = app.storage.user.get('userid', None)
             if uid is not None:
                 await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
-            search_results.refresh()
             load_resource_page.refresh()
             trend.refresh()
+            search_results.refresh()
 
         bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
         bookmark_ids = [b.resourceid for b in bookmarks]
@@ -124,15 +124,15 @@ async def load_resource_page(resources) -> None:
         uid = app.storage.user.get('userid', None)
         if uid is not None:
             await models.Bookmark.create(userid=uid, resourceid=rid)
-        load_resource_page.refresh()
         trend.refresh()
+        load_resource_page.refresh()
 
     async def unbookmark(rid) -> None:
         uid = app.storage.user.get('userid', None)
         if uid is not None:
             await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
-        load_resource_page.refresh()
         trend.refresh()
+        load_resource_page.refresh()
 
     bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
     bookmark_ids = [b.resourceid for b in bookmarks]
@@ -235,15 +235,15 @@ async def trend(repos) -> None:
                 )
             rid = await get_id(repo)
             await models.Bookmark.create(userid=uid, resourceid=rid)
-        trend.refresh()
         load_resource_page.refresh()
+        trend.refresh()
 
     async def unbookmark(rid) -> None:
         uid = app.storage.user.get('userid', None)
         if uid is not None:
             await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
-        trend.refresh()
         load_resource_page.refresh()
+        trend.refresh()
 
     bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
     bookmark_ids = [b.resourceid for b in bookmarks]
