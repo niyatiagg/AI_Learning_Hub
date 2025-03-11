@@ -2,7 +2,6 @@ from tortoise.expressions import Q
 
 import models
 
-from main import trend
 from models import ResourceType
 from nicegui.events import ValueChangeEventArguments
 from nicegui import app, events, ui
@@ -211,3 +210,67 @@ async def submit_resource_util(container) -> None:
             url = ui.input('Url').style("width:80%")
             image = ui.input('Image').style("width:80%")
             ui.button("Submit", icon='upload', on_click=lambda: submit())
+
+@ui.refreshable
+async def trend(repos) -> None:
+    async def get_id(repo) -> int:
+        repos: List[models.Resource] = await models.Resource.filter(url=repo['html_url'])
+        if len(repos) > 0:
+            return repos[0].id
+        return None
+
+    async def bookmark(repo) -> None:
+        uid = app.storage.user.get('userid', None)
+        if uid is not None:
+            rid = await get_id(repo)
+            if rid is None:
+                await models.Resource.create(
+                    title=repo['full_name'],
+                    description=repo['description'],
+                    image=repo['owner']['avatar_url'],
+                    type=models.ResourceType.REPOSITORY,
+                    url=repo['html_url'],
+                    language=repo.get('language', None),
+                    stars=repo.get('watchers_count', None)
+                )
+            rid = await get_id(repo)
+            await models.Bookmark.create(userid=uid, resourceid=rid)
+        trend.refresh()
+        load_resource_page.refresh()
+
+    async def unbookmark(rid) -> None:
+        uid = app.storage.user.get('userid', None)
+        if uid is not None:
+            await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
+        trend.refresh()
+        load_resource_page.refresh()
+
+    bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
+    bookmark_ids = [b.resourceid for b in bookmarks]
+    bookmarked_repos: List[models.Resource] = await models.Resource.filter(id__in=bookmark_ids)
+    bookmarked_urls = {b.url: b.id for b in bookmarked_repos}
+
+    sorted_repos = sorted(repos, key=lambda r: r['watchers_count'], reverse=True)
+    with ui.list():
+        for repo in sorted_repos:  # iterate over the response data of the api
+            with ui.item():
+                with ui.item_section().props('avatar'):
+                    ui.image(repo['owner']['avatar_url'])
+                with ui.item_section():
+                    with ui.link(target=repo['html_url'], new_tab=True):
+                        ui.item_label(repo['full_name']).classes('text-lg')
+                    ui.item_label(repo['description']).props('caption').classes('text-lg').style(
+                        'padding-top: 5px; padding-bottom: 5px;')
+                    with ui.row().classes('items-center'):
+                        ui.item_label(repo['language']).props('caption').classes('text-md')
+                        ui.icon('star').style('margin-right: -12px;').classes('text-md')
+                        ui.item_label(repo['watchers_count']).props('caption').classes('text-md')
+                        with ui.link(target="https://github.com/" + repo['full_name'] + "/graphs/contributors",
+                                     new_tab=True):
+                            ui.chip('Contributors', text_color='white')
+                if repo['html_url'] not in bookmarked_urls:
+                    ui.chip('Bookmark', selectable=True, icon='bookmark', text_color="white",
+                            on_click=lambda rep=repo: bookmark(rep)).classes('mt-2').props("dark")
+                else:
+                    ui.chip('Unbookmark', selectable=True, icon='bookmark', text_color="white", color='green',
+                            on_click=lambda rid=bookmarked_urls[repo['html_url']]: unbookmark(rid)).classes('mt-2')
