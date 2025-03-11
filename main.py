@@ -123,7 +123,7 @@ async def trending_repos(container) -> None:
                 running_query.cancel()  # cancel the previous query; happens when you type fast
             results.clear()
             # store the http coroutine in a task so we can cancel it later if needed
-            running_query = asyncio.create_task(api.get(f'https://api.github.com/search/repositories?q=deeplearning'))
+            running_query = asyncio.create_task(api.get(f'https://api.github.com/search/repositories?q=artificial+learning'))
             response = await running_query
             if response.text == '':
                 return

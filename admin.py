@@ -14,7 +14,7 @@ async def admin_page(container) -> None:
 @ui.refreshable
 async def admin_table() -> None:
     async def approve(res: models.Unapproved) -> None:
-        await models.Resource.create(title=res.title, description=res.description, type=res.type, url=res.url, image=res.url, date=res.date, authors=res.authors)
+        await models.Resource.create(title=res.title, description=res.description, type=res.type, url=res.url, image=res.image, date=res.date, authors=res.authors)
         await res.delete()
         admin_table.refresh()
 
