@@ -10,7 +10,7 @@ from typing import List
 async def search(container) -> None:
     results = None
     resource_type = None
-    search_text = None
+    search_text = ''
 
     @ui.refreshable
     async def search_results() -> None:
@@ -33,7 +33,7 @@ async def search(container) -> None:
         bookmark_ids = [b.resourceid for b in bookmarks]
 
         results.clear()
-        if resource_type is None:
+        if resource_type in [e.value for e in ResourceType]:
             resources: List[models.Resource] = await models.Resource.filter(Q(title__contains=search_text) | Q(description__contains=search_text))
         else:
             resources: List[models.Resource] = await models.Resource.filter(Q(type=resource_type) &
@@ -59,7 +59,8 @@ async def search(container) -> None:
     async def notify(value: ResourceType) -> None:
         nonlocal resource_type
         resource_type = value
-        await search_results()
+        if search_text != '':
+            await search_results()
 
 
     with container:
@@ -67,7 +68,7 @@ async def search(container) -> None:
         ui.input(label="search query", placeholder="Search bar").on('keydown.enter', seee).props(
             'clearable outlined dense outline').style('background-color: white; margin-left: 20px;')
         ui.select(label="Resource Type",
-                  options=[ResourceType.BLOG, ResourceType.COURSE, ResourceType.HANDBOOK, ResourceType.REPOSITORY,
+                  options=['Select', ResourceType.BLOG, ResourceType.COURSE, ResourceType.HANDBOOK, ResourceType.REPOSITORY,
                            ResourceType.RESEARCH_PAPER], value=None,
                   on_change=lambda e: notify(e.value)).style("width:40%")
         results = ui.row().classes('flex flex-wrap justify-start items-stretch gap-4')
@@ -111,7 +112,7 @@ async def bookmarked(container) -> None:
             await load_resource_page(None)
 
 async def resource_page(resource_type=None) -> None:
-    resources: List[models.Resource] = await models.Resource.filter(type=resource_type)
+    resources: List[models.Resource] = await models.Resource.filter(type=resource_type).order_by('-stars').order_by('-rating')
     await load_resource_page(resources)
 
 @ui.refreshable
@@ -151,7 +152,7 @@ def load_fragment(res) -> None:
             ui.image(res.image).classes('w-full h-48 object-cover')  # Adjust size as necessary
         with ui.column().classes('flex-grow p-4'):
             if res.url:
-                with ui.link(target=res.url):
+                with ui.link(target=res.url, new_tab=True):
                     ui.label(res.title).classes('text-lg font-semibold')
             else:
                 ui.label(res.title).classes('text-lg font-semibold')

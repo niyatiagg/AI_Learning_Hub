@@ -127,11 +127,11 @@ async def trending_repos(container) -> None:
             if response.text == '':
                 return
             with results:  # enter the context of the results row
-                await trend(response)
+                await trend(response.json()['items'] or [])
             running_query = None
 
 @ui.refreshable
-async def trend(response) -> None:
+async def trend(repos) -> None:
     async def get_id(repo) -> int:
         repos: List[models.Resource] = await models.Resource.filter(url=repo['html_url'])
         if len(repos) > 0:
@@ -169,13 +169,14 @@ async def trend(response) -> None:
     bookmarked_repos: List[models.Resource] = await models.Resource.filter(id__in=bookmark_ids)
     bookmarked_urls = {b.url: b.id for b in bookmarked_repos}
 
+    sorted_repos = sorted(repos, key=lambda r: r['watchers_count'], reverse=True)
     with ui.list():
-        for repo in response.json()['items'] or []:  # iterate over the response data of the api
+        for repo in sorted_repos:  # iterate over the response data of the api
             with ui.item():
                 with ui.item_section().props('avatar'):
                     ui.image(repo['owner']['avatar_url'])
                 with ui.item_section():
-                    with ui.link(target=repo['html_url']):
+                    with ui.link(target=repo['html_url'], new_tab=True):
                         ui.item_label(repo['full_name']).classes('text-lg')
                     ui.item_label(repo['description']).props('caption').classes('text-lg').style(
                         'padding-top: 5px; padding-bottom: 5px;')
