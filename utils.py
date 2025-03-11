@@ -112,7 +112,7 @@ async def bookmarked(container) -> None:
             await load_resource_page(None)
 
 async def resource_page(resource_type=None) -> None:
-    resources: List[models.Resource] = await models.Resource.filter(type=resource_type).order_by('-stars').order_by('-rating')
+    resources: List[models.Resource] = await models.Resource.filter(type=resource_type).order_by('-stars', '-rating', '-date')
     await load_resource_page(resources)
 
 @ui.refreshable
