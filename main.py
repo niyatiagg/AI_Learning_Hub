@@ -140,6 +140,8 @@ async def trending_repos(container) -> None:
                                     ui.item_label(repo['language']).props('caption').classes('text-md')
                                     ui.icon('star').style('margin-right: -12px;').classes('text-md')
                                     ui.item_label(repo['watchers_count']).props('caption').classes('text-md')
+                                    with ui.link(target="https://github.com/" + repo['full_name'] + "/graphs/contributors", new_tab=True):
+                                        ui.chip('Contributors')
             running_query = None
 
 

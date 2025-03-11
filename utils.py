@@ -174,3 +174,5 @@ def load_fragment(res) -> None:
             if res.stars:
                 #ui.icon('star').style('margin-right: -12px;').classes('text-md')
                 ui.label("Stars: " + str(res.stars)).classes('text-sm')
+                with ui.link(target="https://github.com/" + res.title + "/graphs/contributors", new_tab=True):
+                    ui.chip('Contributors')
