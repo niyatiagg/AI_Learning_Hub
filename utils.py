@@ -19,27 +19,23 @@ async def search(container) -> None:
             uid = app.storage.user.get('userid', None)
             if uid is not None:
                 await models.Bookmark.create(userid=uid, resourceid=rid)
-            load_resource_page.refresh()
-            trend.refresh()
             search_results.refresh()
 
         async def unbookmark(rid) -> None:
             uid = app.storage.user.get('userid', None)
             if uid is not None:
                 await models.Bookmark.filter(userid=uid, resourceid=rid).delete()
-            load_resource_page.refresh()
-            trend.refresh()
             search_results.refresh()
 
         bookmarks: List[models.Bookmark] = await models.Bookmark.filter(userid=app.storage.user.get('userid'))
         bookmark_ids = [b.resourceid for b in bookmarks]
 
-        results.clear()
         if resource_type == ResourceType.SELECT:
             resources: List[models.Resource] = await models.Resource.filter(Q(title__contains=search_text) | Q(description__contains=search_text)).order_by('-rating', '-stars', '-date')
         else:
             resources: List[models.Resource] = await models.Resource.filter(Q(type=resource_type) &
                                                                             (Q(title__contains=search_text) | Q(description__contains=search_text))).order_by('-rating', '-stars', '-date')
+        results.clear()
         with results:
             for res in resources:
                 with ui.card().classes(
